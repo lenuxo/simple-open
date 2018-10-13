@@ -1,0 +1,35 @@
+{
+    "colorBase": {
+        "yellow": "#FFE70B",
+        "black": "#454545",
+        "white": "#ffffff",
+        "whiteO": "rgba(255,255,255,0.75)",
+        "greyL1": "#F1F3F4",
+        "greyL2": "#DDE2E5",
+        "red": "#D0021B"
+    },
+    "shadow": "0 1px 2px 0 rgba(0,0,0,0.1)",
+    "font": {
+        "family": "'PingFang SC', 'SF Pro Display', 'SF UI Display', Helvetica, Arial",
+        "size": {
+            "s": "10px",
+            "m": "18px",
+            "l": "24px"
+        },
+        "weight": {
+            "light": 300,
+            "regular": 400,
+            "medium": 600,
+            "bold": 700
+        }
+    },
+    "spacing": {
+        "unit": 8
+    },
+    "transition": {
+        "fast": "0.1s ease-in-out",
+        "normal": "0.2s ease-in-out",
+        "slow": "0.5s ease-in-out",
+        "spring": "0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+    }
+}
