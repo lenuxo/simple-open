@@ -3,11 +3,15 @@
     "add_item.dnd": "DRAG & DROP",
     "add_item.f": "your file or folder here,",
     "add_item.or": "or ",
-    "add_item.br":"browse",
+    "add_item.br": "browse",
     "cta": "Open this {count,number}",
     "drop_cover.drop": "DROP",
     "drop_cover.here": "here",
     "alert.context": "Confirm delete this group:",
     "alert.delete": "Delete",
-    "alert.dismiss": "Dismiss"
+    "alert.dismiss": "Dismiss",
+    "alert.ok": "OK",
+    "alert.add.t1": "Input path/URL or",
+    "alert.add.t2": "browse",
+    "alert.add.eg": "eg. ~/Desktop or trello.com"
 }

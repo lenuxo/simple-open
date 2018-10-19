@@ -34,32 +34,38 @@ for (let i = 0; i < 10; i++) {
     });
 }
 
+@inject(["viewStore"])
 @observer
 class List_view extends React.Component {
     constructor(props) {
         super(props);
         this.listview_ref = React.createRef();
+        this.scroller_ref = React.createRef();
         this.state = {
             listitem_width: "",
-            isLoading: false,
             isEmpty: false
         };
-        this.get_item_width = this.get_item_width.bind(this);
-        this.set_item_width = this.set_item_width.bind(this);
     }
-    get_item_width() {
+    scrollHandler = e => {
+        if (this.scroller_ref.current.scrollTop > 16) {
+            this.props.viewStore.list_scrolled = true;
+        } else {
+            this.props.viewStore.list_scrolled = false;
+        }
+    };
+    get_item_width = () => {
         let view_width = this.listview_ref.current.clientWidth;
         let item_margin = 16;
         let min_width = 248 + item_margin;
         let dif = (view_width % min_width) / parseInt(view_width / min_width);
         let result = dif + min_width - item_margin;
-        return result;
-    }
-    set_item_width() {
+        return parseInt(result);
+    };
+    set_item_width = () => {
         this.setState({
             listitem_width: this.get_item_width()
         });
-    }
+    };
     componentDidMount() {
         this.set_item_width();
         window.addEventListener("resize", this.set_item_width);
@@ -69,7 +75,7 @@ class List_view extends React.Component {
     }
     render() {
         return (
-            <View>
+            <View onScroll={this.scrollHandler} innerRef={this.scroller_ref}>
                 <div
                     ref={this.listview_ref}
                     style={{
@@ -80,7 +86,7 @@ class List_view extends React.Component {
                         flexWrap: "wrap"
                     }}
                 >
-                    {this.state.isLoading ? (
+                    {this.props.viewStore.item_loading ? (
                         <React.Fragment>
                             <List_item
                                 isLoading
@@ -115,8 +121,13 @@ class List_view extends React.Component {
                         ))
                     )}
                 </div>
-                {!this.state.isLoading && (
-                    <Add_new isEmpty={this.state.isEmpty} />
+                {!this.props.viewStore.item_loading && (
+                    <Add_new
+                        isEmpty={this.state.isEmpty}
+                        browse={() => {
+                            this.props.viewStore.show_add_alert = true;
+                        }}
+                    />
                 )}
             </View>
         );

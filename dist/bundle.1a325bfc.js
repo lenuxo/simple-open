@@ -26337,7 +26337,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
 
 var _mobx = require("mobx");
 
@@ -26389,53 +26389,63 @@ function _initializerWarningHelper(descriptor, context) {
 var View_store = (_class = function View_store() {
     _classCallCheck(this, View_store);
 
-    _initDefineProp(this, "show_alert", _descriptor, this);
+    _initDefineProp(this, "user_lang", _descriptor, this);
 
-    _initDefineProp(this, "show_pop_menu", _descriptor2, this);
+    _initDefineProp(this, "show_alert", _descriptor2, this);
 
-    _initDefineProp(this, "can_drop", _descriptor3, this);
+    _initDefineProp(this, "show_pop_menu", _descriptor3, this);
 
-    _initDefineProp(this, "header_loading", _descriptor4, this);
+    _initDefineProp(this, "can_drop", _descriptor4, this);
 
-    _initDefineProp(this, "item_loading", _descriptor5, this);
+    _initDefineProp(this, "header_loading", _descriptor5, this);
 
-    _initDefineProp(this, "list_scrolled", _descriptor6, this);
+    _initDefineProp(this, "item_loading", _descriptor6, this);
 
-    _initDefineProp(this, "current_group_name", _descriptor7, this);
-}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "show_alert", [_mobx.observable], {
+    _initDefineProp(this, "list_scrolled", _descriptor7, this);
+
+    _initDefineProp(this, "current_group_name", _descriptor8, this);
+}
+
+// 限制长度：10个全角字符或20个半角字符
+, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "user_lang", [_mobx.observable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return "en";
+    }
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "show_alert", [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "show_pop_menu", [_mobx.observable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "show_pop_menu", [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "can_drop", [_mobx.observable], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "can_drop", [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "header_loading", [_mobx.observable], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "header_loading", [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "item_loading", [_mobx.observable], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "item_loading", [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "list_scrolled", [_mobx.observable], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "list_scrolled", [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "current_group_name", [_mobx.observable], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "current_group_name", [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
-        return "Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!";
+        return "组名";
     }
 })), _class);
 exports.default = View_store;
@@ -36139,7 +36149,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _dec, _class, _desc, _value, _class2, _descriptor;
 
 var _templateObject = _taggedTemplateLiteral(["\n    align-self: flex-start;\n    flex-grow: 0;\n    flex-shrink: 0;\n    background: ", ";\n    border-radius: 4px;\n    height: 34px;\n    width: ", "px;\n    margin-left: ", "px;\n    animation: loading ", " alternate infinite;\n    @keyframes loading {\n        from {\n            background: ", ";\n        }\n        to {\n            background: ", ";\n        }\n    }\n"], ["\n    align-self: flex-start;\n    flex-grow: 0;\n    flex-shrink: 0;\n    background: ", ";\n    border-radius: 4px;\n    height: 34px;\n    width: ", "px;\n    margin-left: ", "px;\n    animation: loading ", " alternate infinite;\n    @keyframes loading {\n        from {\n            background: ", ";\n        }\n        to {\n            background: ", ";\n        }\n    }\n"]),
-    _templateObject2 = _taggedTemplateLiteral(["\n    align-self: flex-start;\n    flex-grow: 0;\n    flex-shrink: 0;\n    margin-left: ", "px;\n    border-radius: 999px;\n    background: ", ";\n    transition: all ", ";\n    padding: ", "px;\n    padding-right: ", "px;\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    user-select: none;\n    .arrow {\n        svg {\n            float: left;\n            width: ", "px;\n            height: ", "px;\n            .stroke {\n                stroke: ", ";\n                fill: ", ";\n            }\n            .polyline {\n                stroke: ", ";\n            }\n        }\n    }\n    .group-name {\n        padding-left: ", "px;\n        font-weight: ", ";\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        overflow: hidden;\n        max-width: calc(100vw - ", "px);\n    }\n    .actions {\n        margin-left: ", "px;\n        overflow: hidden;\n        height: 16px;\n        width: ", ";\n        opacity: ", ";\n        transition: ", ";\n        .action {\n            float: left;\n            width: 16px;\n            height: 16px;\n            margin-left: ", "px;\n            svg {\n                float: left;\n                path {\n                    fill: ", ";\n                }\n            }\n        }\n        .action:hover {\n            svg path {\n                fill: ", ";\n            }\n        }\n    }\n"], ["\n    align-self: flex-start;\n    flex-grow: 0;\n    flex-shrink: 0;\n    margin-left: ", "px;\n    border-radius: 999px;\n    background: ", ";\n    transition: all ", ";\n    padding: ", "px;\n    padding-right: ", "px;\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    user-select: none;\n    .arrow {\n        svg {\n            float: left;\n            width: ", "px;\n            height: ", "px;\n            .stroke {\n                stroke: ", ";\n                fill: ", ";\n            }\n            .polyline {\n                stroke: ", ";\n            }\n        }\n    }\n    .group-name {\n        padding-left: ", "px;\n        font-weight: ", ";\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        overflow: hidden;\n        max-width: calc(100vw - ", "px);\n    }\n    .actions {\n        margin-left: ", "px;\n        overflow: hidden;\n        height: 16px;\n        width: ", ";\n        opacity: ", ";\n        transition: ", ";\n        .action {\n            float: left;\n            width: 16px;\n            height: 16px;\n            margin-left: ", "px;\n            svg {\n                float: left;\n                path {\n                    fill: ", ";\n                }\n            }\n        }\n        .action:hover {\n            svg path {\n                fill: ", ";\n            }\n        }\n    }\n"]);
+    _templateObject2 = _taggedTemplateLiteral(["\n    align-self: flex-start;\n    flex-grow: 0;\n    flex-shrink: 0;\n    margin-left: ", "px;\n    border-radius: 999px;\n    background: ", ";\n    background: ", ";\n    transition: all ", ";\n    padding: ", "px;\n    padding-right: ", "px;\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    user-select: none;\n    .arrow {\n        visibility: ", ";\n        svg {\n            float: left;\n            width: ", "px;\n            height: ", "px;\n            .stroke {\n                stroke: ", ";\n                fill: ", ";\n            }\n            .polyline {\n                stroke: ", ";\n            }\n        }\n    }\n    .group-name {\n        padding-left: ", "px;\n        max-width: calc(100vw - ", "px);\n        div {\n            width: 100%;\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n            font-size: ", ";\n            line-height: 150%;\n        }\n        input {\n            font-size: ", ";\n            font-weight: ", ";\n            line-height: 150%;\n            margin: 0;\n            padding: 0;\n            background: none;\n            outline: none;\n            border: 0;\n        }\n    }\n    .actions {\n        margin-left: ", "px;\n        overflow: hidden;\n        height: 16px;\n        /* width: ", "; */\n        opacity: ", ";\n        transition: ", ";\n        .action {\n            float: right;\n            width: 16px;\n            height: 16px;\n            margin-left: ", "px;\n            svg {\n                float: left;\n                path {\n                    fill: ", ";\n                }\n            }\n        }\n        .action:hover {\n            svg path {\n                fill: ", ";\n            }\n        }\n    }\n    @keyframes shake{\n        0% {\n            transform: translateX(0)\n        }\n        25%{\n            transform: translateX(-8px)\n        }\n        50%{\n            transform: translateX(0)\n        }\n        75%{\n            transform: translateX(8px)\n        }\n        100%{\n            transform: translateX(0)\n        }\n    }\n    animation:", ";\n"], ["\n    align-self: flex-start;\n    flex-grow: 0;\n    flex-shrink: 0;\n    margin-left: ", "px;\n    border-radius: 999px;\n    background: ", ";\n    background: ", ";\n    transition: all ", ";\n    padding: ", "px;\n    padding-right: ", "px;\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    user-select: none;\n    .arrow {\n        visibility: ", ";\n        svg {\n            float: left;\n            width: ", "px;\n            height: ", "px;\n            .stroke {\n                stroke: ", ";\n                fill: ", ";\n            }\n            .polyline {\n                stroke: ", ";\n            }\n        }\n    }\n    .group-name {\n        padding-left: ", "px;\n        max-width: calc(100vw - ", "px);\n        div {\n            width: 100%;\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n            font-size: ", ";\n            line-height: 150%;\n        }\n        input {\n            font-size: ", ";\n            font-weight: ", ";\n            line-height: 150%;\n            margin: 0;\n            padding: 0;\n            background: none;\n            outline: none;\n            border: 0;\n        }\n    }\n    .actions {\n        margin-left: ", "px;\n        overflow: hidden;\n        height: 16px;\n        /* width: ", "; */\n        opacity: ", ";\n        transition: ", ";\n        .action {\n            float: right;\n            width: 16px;\n            height: 16px;\n            margin-left: ", "px;\n            svg {\n                float: left;\n                path {\n                    fill: ", ";\n                }\n            }\n        }\n        .action:hover {\n            svg path {\n                fill: ", ";\n            }\n        }\n    }\n    @keyframes shake{\n        0% {\n            transform: translateX(0)\n        }\n        25%{\n            transform: translateX(-8px)\n        }\n        50%{\n            transform: translateX(0)\n        }\n        75%{\n            transform: translateX(8px)\n        }\n        100%{\n            transform: translateX(0)\n        }\n    }\n    animation:", ";\n"]);
 
 var _react = require("react");
 
@@ -36217,15 +36227,22 @@ var unit = style_var.spacing.unit;
 var Loading = _styledComponents2.default.div(_templateObject, style_var.colorBase.greyL1, unit * 30, unit * 3, style_var.transition.slow, style_var.colorBase.greyL1, style_var.colorBase.greyL2);
 var Container = _styledComponents2.default.div(_templateObject2, unit * 2, function (props) {
     return props.hovered && style_var.colorBase.greyL1;
-}, style_var.transition.fast, unit, unit * 2, unit * 2, unit * 2, style_var.colorBase.black, function (props) {
+}, function (props) {
+    return props.editing && style_var.colorBase.greyL1;
+}, style_var.transition.fast, unit, unit * 2, function (props) {
+    return props.editing && "hidden";
+}, unit * 2, unit * 2, style_var.colorBase.black, function (props) {
     return props.hovered && style_var.colorBase.black;
 }, function (props) {
     return props.hovered && style_var.colorBase.greyL1;
-}, unit, style_var.font.weight.medium, unit * 19, unit * 2, function (props) {
+}, unit, unit * 18, style_var.font.weight.medium, style_var.font.size.m, style_var.font.size.m, style_var.font.weight.medium, unit * 2, function (props) {
+    if (props.editing) return "24px";
     return props.hovered ? "48px" : "0";
 }, function (props) {
     return props.hovered ? 1 : 0;
-}, style_var.transition.fast, unit, style_var.colorBase.greyL2, style_var.colorBase.black);
+}, style_var.transition.fast, unit, style_var.colorBase.greyL2, style_var.colorBase.black, function (props) {
+    return props.overLimit && "shake " + style_var.transition.fast;
+});
 
 var Switcher = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, _mobxReact.observer)(_class = (_class2 = function (_Component) {
     _inherits(Switcher, _Component);
@@ -36241,34 +36258,89 @@ var Switcher = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, 
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Switcher.__proto__ || Object.getPrototypeOf(Switcher)).call.apply(_ref, [this].concat(args))), _this), _initDefineProp(_this, "store", _descriptor, _this), _this.hoverHandler = function (e) {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Switcher.__proto__ || Object.getPrototypeOf(Switcher)).call.apply(_ref, [this].concat(args))), _this), _initDefineProp(_this, "store", _descriptor, _this), _this.escHandler = function (e) {
+            if (e.keyCode !== 27) return;
+            if (_this.store.isEditing) {
+                _this.unsaveBlurHandler();
+            } else if (_this.props.viewStore.show_pop_menu) {
+                _this.togglePopHandler();
+            }
+        }, _this.hoverHandler = function (e) {
+            if (_this.store.isEditing) return;
             if (e.type == "mouseover") {
                 _this.store.isHover = true;
             } else {
                 _this.store.isHover = false;
             }
         }, _this.togglePopHandler = function (e) {
+            if (_this.store.isEditing) return;
             if (!e) {
                 _this.props.viewStore.show_pop_menu = false;
             } else {
                 _this.props.viewStore.show_pop_menu = true;
             }
+        }, _this.unsaveBlurHandler = function () {
+            if (!_this.store.isEditing) return;
+            _this.store.isEditing = false;
+            _this.store.unsavedName = _this.props.viewStore.current_group_name;
+        }, _this.saveHandler = function (e) {
+            // TODO: save unsaved group name
+            var save_group_name = function save_group_name() {
+                console.log("save group name");
+                _this.props.viewStore.current_group_name = _this.store.unsavedName;
+                _this.store.isEditing = false;
+            };
+
+            e.stopPropagation();
+            if (e.type == "keypress" && e.key == "Enter") return save_group_name();
+            if (e.type == "click") return save_group_name();
         }, _this.editHandler = function (e) {
             e.stopPropagation();
-            // TODO: edit group name
+            _this.store.unsavedName = _this.props.viewStore.current_group_name;
+            _this.store.isEditing = true;
         }, _this.deleteHandler = function (e) {
             e.stopPropagation();
             // TODO: delete this group
             _this.props.viewStore.show_alert = true;
+        }, _this.typingHandler = function (e) {
+            _this.store.unsavedName = _this.limiteNameLength(e.target.value);
+        }, _this.limiteNameLength = function (value) {
+            if (typeof value !== "string") return;
+            if (!value) return value;
+            var length = void 0;
+            var enchar = value.match(/[\u0000-\u00ff]/g);
+            if (enchar) {
+                length = value.length * 2 - value.match(/[\u0000-\u00ff]/g).length;
+            } else {
+                length = value.length * 2;
+            }
+            if (length > 20) {
+                // 超过限制长度 10个全角字符或20个半角字符
+                _this.store.overLimit = true;
+                var temp = value.split("");
+                temp.pop();
+                return temp.join("");
+            } else {
+                return value;
+            }
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(Switcher, [{
         key: "componentDidMount",
-        value: function componentDidMount() {}
+        value: function componentDidMount() {
+            document.addEventListener("keydown", this.escHandler);
+        }
+    }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+            document.removeEventListener("keydown", this.escHandler);
+        }
     }, {
         key: "render",
         value: function render() {
+            var _this2 = this;
+
             if (this.props.viewStore.header_loading) {
                 return _react2.default.createElement(Loading, null);
             } else {
@@ -36280,9 +36352,14 @@ var Switcher = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, 
                         {
                             hovered: this.store.isHover,
                             poped: this.props.viewStore.show_pop_menu,
+                            editing: this.store.isEditing,
+                            overLimit: this.store.overLimit,
                             onMouseOver: this.hoverHandler,
                             onMouseLeave: this.hoverHandler,
-                            onClick: this.togglePopHandler
+                            onClick: this.togglePopHandler,
+                            onAnimationEnd: function onAnimationEnd(e) {
+                                if (e.animationName == "shake") _this2.store.overLimit = false;
+                            }
                         },
                         _react2.default.createElement(
                             "div",
@@ -36319,8 +36396,23 @@ var Switcher = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, 
                         _react2.default.createElement(
                             "div",
                             { className: "group-name" },
-                            _react2.default.createElement(
-                                "span",
+                            this.store.isEditing ? _react2.default.createElement("input", {
+                                autoFocus: true,
+                                onChange: this.typingHandler,
+                                onFocus: function onFocus() {
+                                    _this2.store.unsavedName = _this2.props.viewStore.current_group_name;
+                                },
+                                onBlur: function onBlur() {
+                                    // this.store.isEditing = false;
+                                    // todo 换成container blur
+                                },
+                                onClick: function onClick(e) {
+                                    return e.stopPropagation();
+                                },
+                                onKeyPress: this.saveHandler,
+                                value: this.store.unsavedName
+                            }) : _react2.default.createElement(
+                                "div",
                                 null,
                                 this.props.viewStore.current_group_name
                             )
@@ -36328,12 +36420,12 @@ var Switcher = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, 
                         _react2.default.createElement(
                             "div",
                             { className: "actions", role: "action" },
-                            _react2.default.createElement(
+                            this.store.isEditing ? _react2.default.createElement(
                                 "div",
                                 {
                                     role: "action",
-                                    className: "action edit",
-                                    onClick: this.editHandler
+                                    className: "action enter",
+                                    onClick: this.saveHandler
                                 },
                                 _react2.default.createElement(
                                     "svg",
@@ -36348,71 +36440,118 @@ var Switcher = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, 
                                         {
                                             id: "Artboard",
                                             stroke: "none",
-                                            strokeidth: "1",
-                                            fill: "none",
-                                            fillRule: "evenodd"
-                                        },
-                                        _react2.default.createElement(
-                                            "g",
-                                            { id: "Group" },
-                                            _react2.default.createElement("rect", {
-                                                id: "Rectangle-path",
-                                                fill: "#000000",
-                                                fillRule: "nonzero",
-                                                opacity: "0",
-                                                x: "0",
-                                                y: "0",
-                                                width: "16",
-                                                height: "16"
-                                            }),
-                                            _react2.default.createElement("path", {
-                                                d: "M12.2857143,0.5 L10.1428571,2.64046838 L13.3571429,5.85117095 L15.5,3.71070257 L12.2857143,0.5 Z M0.5,12.2725761 L0.516741071,15.5 L3.71428571,15.4832776 L12.2857143,6.92140514 L9.07142857,3.71070257 L0.5,12.2725761 Z M3.71428571,14.4130434 L1.57142857,14.4130434 L1.57142857,12.2725761 L2.64285714,12.2725761 L2.64285714,13.3428103 L3.71428571,13.3428103 L3.71428571,14.4130434 Z",
-                                                id: "Fill-1"
-                                            })
-                                        )
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                "div",
-                                {
-                                    role: "action",
-                                    className: "action delete",
-                                    onClick: this.deleteHandler
-                                },
-                                _react2.default.createElement(
-                                    "svg",
-                                    {
-                                        width: "16px",
-                                        height: "16px",
-                                        viewBox: "0 0 16 16",
-                                        version: "1.1"
-                                    },
-                                    _react2.default.createElement(
-                                        "g",
-                                        {
-                                            id: "Artboard-Copy",
-                                            stroke: "none",
                                             strokeWidth: "1",
                                             fill: "none",
                                             fillRule: "evenodd"
                                         },
+                                        _react2.default.createElement("rect", {
+                                            id: "Rectangle-path",
+                                            opacity: "0",
+                                            fillRule: "nonzero",
+                                            x: "0",
+                                            y: "0",
+                                            width: "16",
+                                            height: "16"
+                                        }),
+                                        _react2.default.createElement("path", {
+                                            d: "M12.5704332,3 L12.5704332,9.73829544 L6.15032208,9.73829544 L6.15032208,6.89841287 L2,10.4475266 L6.15032208,13.9946736 L6.15032208,11.1567897 L13.2796804,11.1567897 C13.6716546,11.1567897 13.9889275,10.8386214 13.9889275,10.4475266 L13.9889275,3 L12.5704332,3 Z",
+                                            id: "Shape",
+                                            fillRule: "nonzero"
+                                        })
+                                    )
+                                )
+                            ) : _react2.default.createElement(
+                                _react2.default.Fragment,
+                                null,
+                                _react2.default.createElement(
+                                    "div",
+                                    {
+                                        role: "action",
+                                        className: "action edit",
+                                        onClick: this.editHandler
+                                    },
+                                    _react2.default.createElement(
+                                        "svg",
+                                        {
+                                            width: "16px",
+                                            height: "16px",
+                                            viewBox: "0 0 16 16",
+                                            version: "1.1"
+                                        },
                                         _react2.default.createElement(
                                             "g",
-                                            { id: "delete", fillRule: "nonzero" },
-                                            _react2.default.createElement("rect", {
-                                                id: "Rectangle-path",
-                                                fill: "#000000",
-                                                opacity: "0",
-                                                x: "0",
-                                                y: "0",
-                                                width: "16",
-                                                height: "16"
-                                            }),
-                                            _react2.default.createElement("path", {
-                                                d: "M14,3.07692308 L10.1538462,3.07692308 L10.1538462,1.84615384 C10.1538462,1.16923077 9.6,0.615384609 8.92307692,0.615384609 L7.07692308,0.615384609 C6.4,0.615384609 5.84615384,1.16923077 5.84615384,1.84615384 L5.84615384,3.07692308 L2,3.07692308 C1.75384616,3.07692308 1.53846153,3.29230769 1.53846153,3.53846153 L1.53846153,4.46153847 C1.53846153,4.70769231 1.75384614,4.92307694 2,4.92307692 L14,4.92307692 C14.2461538,4.92307692 14.4615385,4.70769231 14.4615385,4.46153847 L14.4615385,3.53846153 C14.4615385,3.29230769 14.2461539,3.07692306 14,3.07692308 Z M7.07692308,2.15384616 C7.07692308,1.96923077 7.2,1.84615384 7.38461539,1.84615384 L8.61538461,1.84615384 C8.8,1.84615384 8.92307692,1.96923077 8.92307692,2.15384616 L8.92307692,3.07692308 L7.07692308,3.07692308 L7.07692308,2.15384616 Z M12.7692308,6.15384616 L3.23076923,6.15384616 C2.98461539,6.15384616 2.76923077,6.36923077 2.76923077,6.61538461 L2.76923077,13.8461538 C2.76923077,14.7076923 3.44615384,15.3846154 4.30769231,15.3846154 L11.6923077,15.3846154 C12.5538462,15.3846154 13.2307692,14.7076923 13.2307692,13.8461538 L13.2307692,6.61538461 C13.2307692,6.36923077 13.0153846,6.15384614 12.7692308,6.15384616 Z M7.07692308,12.9230769 C7.07692308,13.1076923 6.95384616,13.2307692 6.76923077,13.2307692 L6.15384616,13.2307692 C5.96923077,13.2307692 5.84615384,13.1076923 5.84615384,12.9230769 L5.84615384,8.61538461 C5.84615384,8.43076922 5.96923077,8.3076923 6.15384616,8.30769231 L6.76923077,8.30769231 C6.95384616,8.30769231 7.07692308,8.43076923 7.07692308,8.61538461 L7.07692308,12.9230769 Z M10.1538462,12.9230769 C10.1538462,13.1076923 10.0307692,13.2307692 9.84615384,13.2307692 L9.23076923,13.2307692 C9.04615384,13.2307692 8.92307692,13.1076923 8.92307692,12.9230769 L8.92307692,8.61538461 C8.92307692,8.43076922 9.04615384,8.3076923 9.23076923,8.30769231 L9.84615384,8.30769231 C10.0307692,8.30769231 10.1538462,8.43076923 10.1538462,8.61538461 L10.1538462,12.9230769 Z",
-                                                id: "Shape"
-                                            })
+                                            {
+                                                id: "Artboard",
+                                                stroke: "none",
+                                                strokeidth: "1",
+                                                fill: "none",
+                                                fillRule: "evenodd"
+                                            },
+                                            _react2.default.createElement(
+                                                "g",
+                                                { id: "Group" },
+                                                _react2.default.createElement("rect", {
+                                                    id: "Rectangle-path",
+                                                    fill: "#000000",
+                                                    fillRule: "nonzero",
+                                                    opacity: "0",
+                                                    x: "0",
+                                                    y: "0",
+                                                    width: "16",
+                                                    height: "16"
+                                                }),
+                                                _react2.default.createElement("path", {
+                                                    d: "M12.2857143,0.5 L10.1428571,2.64046838 L13.3571429,5.85117095 L15.5,3.71070257 L12.2857143,0.5 Z M0.5,12.2725761 L0.516741071,15.5 L3.71428571,15.4832776 L12.2857143,6.92140514 L9.07142857,3.71070257 L0.5,12.2725761 Z M3.71428571,14.4130434 L1.57142857,14.4130434 L1.57142857,12.2725761 L2.64285714,12.2725761 L2.64285714,13.3428103 L3.71428571,13.3428103 L3.71428571,14.4130434 Z",
+                                                    id: "Fill-1"
+                                                })
+                                            )
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    {
+                                        role: "action",
+                                        className: "action delete",
+                                        onClick: this.deleteHandler
+                                    },
+                                    _react2.default.createElement(
+                                        "svg",
+                                        {
+                                            width: "16px",
+                                            height: "16px",
+                                            viewBox: "0 0 16 16",
+                                            version: "1.1"
+                                        },
+                                        _react2.default.createElement(
+                                            "g",
+                                            {
+                                                id: "Artboard-Copy",
+                                                stroke: "none",
+                                                strokeWidth: "1",
+                                                fill: "none",
+                                                fillRule: "evenodd"
+                                            },
+                                            _react2.default.createElement(
+                                                "g",
+                                                {
+                                                    id: "delete",
+                                                    fillRule: "nonzero"
+                                                },
+                                                _react2.default.createElement("rect", {
+                                                    id: "Rectangle-path",
+                                                    fill: "#000000",
+                                                    opacity: "0",
+                                                    x: "0",
+                                                    y: "0",
+                                                    width: "16",
+                                                    height: "16"
+                                                }),
+                                                _react2.default.createElement("path", {
+                                                    d: "M14,3.07692308 L10.1538462,3.07692308 L10.1538462,1.84615384 C10.1538462,1.16923077 9.6,0.615384609 8.92307692,0.615384609 L7.07692308,0.615384609 C6.4,0.615384609 5.84615384,1.16923077 5.84615384,1.84615384 L5.84615384,3.07692308 L2,3.07692308 C1.75384616,3.07692308 1.53846153,3.29230769 1.53846153,3.53846153 L1.53846153,4.46153847 C1.53846153,4.70769231 1.75384614,4.92307694 2,4.92307692 L14,4.92307692 C14.2461538,4.92307692 14.4615385,4.70769231 14.4615385,4.46153847 L14.4615385,3.53846153 C14.4615385,3.29230769 14.2461539,3.07692306 14,3.07692308 Z M7.07692308,2.15384616 C7.07692308,1.96923077 7.2,1.84615384 7.38461539,1.84615384 L8.61538461,1.84615384 C8.8,1.84615384 8.92307692,1.96923077 8.92307692,2.15384616 L8.92307692,3.07692308 L7.07692308,3.07692308 L7.07692308,2.15384616 Z M12.7692308,6.15384616 L3.23076923,6.15384616 C2.98461539,6.15384616 2.76923077,6.36923077 2.76923077,6.61538461 L2.76923077,13.8461538 C2.76923077,14.7076923 3.44615384,15.3846154 4.30769231,15.3846154 L11.6923077,15.3846154 C12.5538462,15.3846154 13.2307692,14.7076923 13.2307692,13.8461538 L13.2307692,6.61538461 C13.2307692,6.36923077 13.0153846,6.15384614 12.7692308,6.15384616 Z M7.07692308,12.9230769 C7.07692308,13.1076923 6.95384616,13.2307692 6.76923077,13.2307692 L6.15384616,13.2307692 C5.96923077,13.2307692 5.84615384,13.1076923 5.84615384,12.9230769 L5.84615384,8.61538461 C5.84615384,8.43076922 5.96923077,8.3076923 6.15384616,8.30769231 L6.76923077,8.30769231 C6.95384616,8.30769231 7.07692308,8.43076923 7.07692308,8.61538461 L7.07692308,12.9230769 Z M10.1538462,12.9230769 C10.1538462,13.1076923 10.0307692,13.2307692 9.84615384,13.2307692 L9.23076923,13.2307692 C9.04615384,13.2307692 8.92307692,13.1076923 8.92307692,12.9230769 L8.92307692,8.61538461 C8.92307692,8.43076922 9.04615384,8.3076923 9.23076923,8.30769231 L9.84615384,8.30769231 C10.0307692,8.30769231 10.1538462,8.43076923 10.1538462,8.61538461 L10.1538462,12.9230769 Z",
+                                                    id: "Shape"
+                                                })
+                                            )
                                         )
                                     )
                                 )
@@ -36430,7 +36569,10 @@ var Switcher = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, 
     enumerable: true,
     initializer: function initializer() {
         return {
-            isHover: false
+            isHover: false,
+            isEditing: false,
+            unsavedName: this.props.viewStore.current_group_name,
+            overLimit: false
         };
     }
 })), _class2)) || _class) || _class);
@@ -36445,7 +36587,7 @@ Object.defineProperty(exports, "__esModule", {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _templateObject = _taggedTemplateLiteral(["\n    -webkit-user-select: none;\n    -webkit-app-region: drag;\n    flex-basis: ", "px;\n    flex-grow: 0;\n    flex-shrink: 0;\n"], ["\n    -webkit-user-select: none;\n    -webkit-app-region: drag;\n    flex-basis: ", "px;\n    flex-grow: 0;\n    flex-shrink: 0;\n"]),
-    _templateObject2 = _taggedTemplateLiteral(["\n    background: ", ";\n    flex-grow: 0;\n    flex-shrink: 0;\n    display: flex;\n    flex-direction: column;\n    padding-bottom: ", "px;\n    border: none;\n    border-bottom: ", ";\n    transition: ", ";\n"], ["\n    background: ", ";\n    flex-grow: 0;\n    flex-shrink: 0;\n    display: flex;\n    flex-direction: column;\n    padding-bottom: ", "px;\n    border: none;\n    border-bottom: ", ";\n    transition: ", ";\n"]);
+    _templateObject2 = _taggedTemplateLiteral(["\n    z-index: 3;\n    background: ", ";\n    flex-grow: 0;\n    flex-shrink: 0;\n    display: flex;\n    flex-direction: column;\n    padding-bottom: ", "px;\n    border: none;\n    box-shadow: ", ";\n    transition: ", ";\n"], ["\n    z-index: 3;\n    background: ", ";\n    flex-grow: 0;\n    flex-shrink: 0;\n    display: flex;\n    flex-direction: column;\n    padding-bottom: ", "px;\n    border: none;\n    box-shadow: ", ";\n    transition: ", ";\n"]);
 
 var _react = require("react");
 
@@ -36475,21 +36617,16 @@ var unit = style_var.spacing.unit;
 
 var Window_dragger = _styledComponents2.default.div(_templateObject, unit * 4);
 var Container = _styledComponents2.default.div(_templateObject2, style_var.colorBase.white, unit, function (props) {
-    return props.isScrolled && "1px solid " + style_var.colorBase.greyL1;
+    return props.isScrolled && style_var.shadow;
 }, style_var.transition.fast);
 
 var Header = function (_React$Component) {
     _inherits(Header, _React$Component);
 
-    function Header(props) {
+    function Header() {
         _classCallCheck(this, Header);
 
-        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
-
-        _this.state = {
-            isScrolled: false
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
     }
 
     _createClass(Header, [{
@@ -36497,7 +36634,7 @@ var Header = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 Container,
-                { isScrolled: this.state.isScrolled },
+                { isScrolled: this.props.scrolled },
                 _react2.default.createElement(Window_dragger, null),
                 _react2.default.createElement(_Switcher2.default, null)
             );
@@ -36725,7 +36862,7 @@ Object.defineProperty(exports, "__esModule", {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _templateObject = _taggedTemplateLiteral(["\n    background: ", ";\n    border-radius: ", "px;\n    box-sizing: border-box;\n    width: ", "px;\n    height: ", "px;\n    margin: ", "px ", "px;\n    animation: loading ", " alternate infinite;\n    @keyframes loading {\n        from {\n            background: ", ";\n        }\n        to {\n            background: ", ";\n        }\n    }\n"], ["\n    background: ", ";\n    border-radius: ", "px;\n    box-sizing: border-box;\n    width: ", "px;\n    height: ", "px;\n    margin: ", "px ", "px;\n    animation: loading ", " alternate infinite;\n    @keyframes loading {\n        from {\n            background: ", ";\n        }\n        to {\n            background: ", ";\n        }\n    }\n"]),
-    _templateObject2 = _taggedTemplateLiteral(["\n    background: ", ";\n    border-radius: ", "px;\n    box-sizing: border-box;\n    width: ", "px;\n    height: ", "px;\n    padding: ", "px;\n    margin: ", "px ", "px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-content: center;\n    &:hover,\n    &.selected {\n        background: ", ";\n        .menu svg {\n            display: block;\n        }\n    }\n    .icon {\n        flex-basis: ", "px;\n        flex-shrink: 0;\n        height: ", "px;\n        border-radius: ", "px;\n        background-color: ", ";\n    }\n    .invalid-icon {\n        opacity: 0.4;\n        flex-basis: ", "px;\n        flex-shrink: 0;\n        height: ", "px;\n        border-radius: ", "px;\n        background-color: ", ";\n        svg {\n            float: left;\n        }\n        path {\n            fill: ", ";\n        }\n    }\n    .text {\n        opacity: ", ";\n        flex-grow: 1;\n        flex-shrink: 1;\n        display: flex;\n        flex-direction: column;\n        align-content: stretch;\n        justify-content: center;\n        padding-left: ", "px;\n        overflow: hidden;\n        .name {\n            font-size: ", ";\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n        .path {\n            font-size: ", ";\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n            direction: rtl;\n            text-align: left;\n        }\n    }\n    .menu {\n        flex-grow: 0;\n        flex-shrink: 0;\n        flex-basis: ", "px;\n        display: flex;\n        flex-direction: column;\n        align-items: stretch;\n        svg {\n            float: right;\n            display: none;\n        }\n    }\n"], ["\n    background: ", ";\n    border-radius: ", "px;\n    box-sizing: border-box;\n    width: ", "px;\n    height: ", "px;\n    padding: ", "px;\n    margin: ", "px ", "px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-content: center;\n    &:hover,\n    &.selected {\n        background: ", ";\n        .menu svg {\n            display: block;\n        }\n    }\n    .icon {\n        flex-basis: ", "px;\n        flex-shrink: 0;\n        height: ", "px;\n        border-radius: ", "px;\n        background-color: ", ";\n    }\n    .invalid-icon {\n        opacity: 0.4;\n        flex-basis: ", "px;\n        flex-shrink: 0;\n        height: ", "px;\n        border-radius: ", "px;\n        background-color: ", ";\n        svg {\n            float: left;\n        }\n        path {\n            fill: ", ";\n        }\n    }\n    .text {\n        opacity: ", ";\n        flex-grow: 1;\n        flex-shrink: 1;\n        display: flex;\n        flex-direction: column;\n        align-content: stretch;\n        justify-content: center;\n        padding-left: ", "px;\n        overflow: hidden;\n        .name {\n            font-size: ", ";\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n        .path {\n            font-size: ", ";\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n            direction: rtl;\n            text-align: left;\n        }\n    }\n    .menu {\n        flex-grow: 0;\n        flex-shrink: 0;\n        flex-basis: ", "px;\n        display: flex;\n        flex-direction: column;\n        align-items: stretch;\n        svg {\n            float: right;\n            display: none;\n        }\n    }\n"]);
+    _templateObject2 = _taggedTemplateLiteral(["\n    background: ", ";\n    border-radius: ", "px;\n    box-sizing: border-box;\n    width: ", "px;\n    height: ", "px;\n    padding: ", "px;\n    margin: ", "px ", "px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-content: center;\n    &:hover,\n    &.selected {\n        background: ", ";\n        .menu svg {\n            display: block;\n        }\n    }\n    .icon {\n        flex-basis: ", "px;\n        flex-shrink: 0;\n        height: ", "px;\n        border-radius: ", "px;\n        background-color: ", ";\n    }\n    .invalid-icon {\n        opacity: 0.4;\n        flex-basis: ", "px;\n        flex-shrink: 0;\n        height: ", "px;\n        border-radius: ", "px;\n        background-color: ", ";\n        svg {\n            float: left;\n        }\n        path {\n            fill: ", ";\n        }\n    }\n    .text {\n        opacity: ", ";\n        flex-grow: 1;\n        flex-shrink: 1;\n        display: flex;\n        flex-direction: column;\n        align-content: stretch;\n        justify-content: center;\n        padding-left: ", "px;\n        overflow: hidden;\n        .name {\n            font-size: ", ";\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n        .path {\n            font-size: ", ";\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n            direction: rtl;\n            text-align: left;\n        }\n    }\n    .menu {\n        flex-grow: 0;\n        flex-shrink: 0;\n        flex-basis: ", "px;\n        display: flex;\n        flex-direction: column;\n        align-items: stretch;\n        .click-area {\n            height: 24px;\n        }\n        svg {\n            float: right;\n            display: none;\n        }\n    }\n"], ["\n    background: ", ";\n    border-radius: ", "px;\n    box-sizing: border-box;\n    width: ", "px;\n    height: ", "px;\n    padding: ", "px;\n    margin: ", "px ", "px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-content: center;\n    &:hover,\n    &.selected {\n        background: ", ";\n        .menu svg {\n            display: block;\n        }\n    }\n    .icon {\n        flex-basis: ", "px;\n        flex-shrink: 0;\n        height: ", "px;\n        border-radius: ", "px;\n        background-color: ", ";\n    }\n    .invalid-icon {\n        opacity: 0.4;\n        flex-basis: ", "px;\n        flex-shrink: 0;\n        height: ", "px;\n        border-radius: ", "px;\n        background-color: ", ";\n        svg {\n            float: left;\n        }\n        path {\n            fill: ", ";\n        }\n    }\n    .text {\n        opacity: ", ";\n        flex-grow: 1;\n        flex-shrink: 1;\n        display: flex;\n        flex-direction: column;\n        align-content: stretch;\n        justify-content: center;\n        padding-left: ", "px;\n        overflow: hidden;\n        .name {\n            font-size: ", ";\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n        .path {\n            font-size: ", ";\n            font-weight: ", ";\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n            direction: rtl;\n            text-align: left;\n        }\n    }\n    .menu {\n        flex-grow: 0;\n        flex-shrink: 0;\n        flex-basis: ", "px;\n        display: flex;\n        flex-direction: column;\n        align-items: stretch;\n        .click-area {\n            height: 24px;\n        }\n        svg {\n            float: right;\n            display: none;\n        }\n    }\n"]);
 
 var _react = require("react");
 
@@ -36747,6 +36884,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 var style_var = require("../style_var.json");
 var unit = style_var.spacing.unit;
+// import {ipcRenderer} from 'electron'
 
 var Loading = _styledComponents2.default.div(_templateObject, style_var.colorBase.greyL1, unit * 0.5, function (props) {
     return props.width;
@@ -36765,36 +36903,33 @@ var List_item = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (List_item.__proto__ || Object.getPrototypeOf(List_item)).call(this, props));
 
+        _this.clickMenuHandler = function (e) {
+            e.stopPropagation();
+            var mouse = { x: e.pageX, y: e.pageY };
+            console.log(mouse);
+            // TODO: 展开菜单
+            // ipcRenderer.send('show-list-item-menu')
+        };
+
+        _this.doubleClickHandler = function (e) {
+            e.stopPropagation();
+            // todo: open this thing
+        };
+
+        _this.clickHandler = function (e) {
+            e.stopPropagation();
+            // todo: select this thing
+        };
+
         _this.state = {
             selected: false,
             invalid: false
         };
         _this.reverse_string = _this.reverse_string.bind(_this);
-        _this.clickMenuHandler = _this.clickMenuHandler.bind(_this);
-        _this.doubleClickHandler = _this.doubleClickHandler.bind(_this);
-        _this.clickHandler = _this.clickHandler.bind(_this);
         return _this;
     }
 
     _createClass(List_item, [{
-        key: "clickMenuHandler",
-        value: function clickMenuHandler(e) {
-            e.stopPropagation();
-            // TODO: 展开菜单
-        }
-    }, {
-        key: "doubleClickHandler",
-        value: function doubleClickHandler(e) {
-            e.stopPropagation();
-            // todo: open this thing
-        }
-    }, {
-        key: "clickHandler",
-        value: function clickHandler(e) {
-            e.stopPropagation();
-            // todo: select this thing
-        }
-    }, {
         key: "reverse_string",
         value: function reverse_string(str) {
             if (!str) return;
@@ -36812,7 +36947,8 @@ var List_item = function (_Component) {
                     width: this.props.width,
                     className: this.state.selected && "selected",
                     onDoubleClick: this.doubleClickHandler,
-                    onClick: this.clickHandler
+                    onClick: this.clickHandler,
+                    onContextMenu: this.clickMenuHandler
                 },
                 this.state.invalid ? _react2.default.createElement(
                     "div",
@@ -36854,7 +36990,7 @@ var List_item = function (_Component) {
                 ),
                 _react2.default.createElement(
                     "div",
-                    { className: "text" },
+                    { className: "text", title: this.props.path },
                     _react2.default.createElement(
                         "div",
                         { className: "name" },
@@ -36951,7 +37087,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
+var _dec, _class;
 
 var _templateObject = _taggedTemplateLiteral(["\n    flex-grow: 1;\n    overflow: auto;\n    padding: 16px;\n    user-select: none;\n    ::-webkit-scrollbar {\n        width: 8px;\n    }\n    ::-webkit-scrollbar-track {\n        background: ", ";\n    }\n    ::-webkit-scrollbar-thumb {\n        border-radius: 999px;\n        background: ", ";\n        &:hover {\n            background: ", ";\n        }\n    }\n"], ["\n    flex-grow: 1;\n    overflow: auto;\n    padding: 16px;\n    user-select: none;\n    ::-webkit-scrollbar {\n        width: 8px;\n    }\n    ::-webkit-scrollbar-track {\n        background: ", ";\n    }\n    ::-webkit-scrollbar-thumb {\n        border-radius: 999px;\n        background: ", ";\n        &:hover {\n            background: ", ";\n        }\n    }\n"]);
 
@@ -36995,7 +37131,7 @@ for (var i = 0; i < 10; i++) {
     });
 }
 
-var List_view = (0, _mobxReact.observer)(_class = function (_React$Component) {
+var List_view = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, _mobxReact.observer)(_class = function (_React$Component) {
     _inherits(List_view, _React$Component);
 
     function List_view(props) {
@@ -37003,35 +37139,40 @@ var List_view = (0, _mobxReact.observer)(_class = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (List_view.__proto__ || Object.getPrototypeOf(List_view)).call(this, props));
 
+        _this.scrollHandler = function (e) {
+            if (_this.scroller_ref.current.scrollTop > 16) {
+                _this.props.viewStore.list_scrolled = true;
+            } else {
+                _this.props.viewStore.list_scrolled = false;
+            }
+        };
+
+        _this.get_item_width = function () {
+            var view_width = _this.listview_ref.current.clientWidth;
+            var item_margin = 16;
+            var min_width = 248 + item_margin;
+            var dif = view_width % min_width / parseInt(view_width / min_width);
+            var result = dif + min_width - item_margin;
+            return parseInt(result);
+        };
+
+        _this.set_item_width = function () {
+            _this.setState({
+                listitem_width: _this.get_item_width()
+            });
+        };
+
         _this.listview_ref = _react2.default.createRef();
+        _this.scroller_ref = _react2.default.createRef();
         _this.state = {
             listitem_width: "",
             isLoading: false,
             isEmpty: false
         };
-        _this.get_item_width = _this.get_item_width.bind(_this);
-        _this.set_item_width = _this.set_item_width.bind(_this);
         return _this;
     }
 
     _createClass(List_view, [{
-        key: "get_item_width",
-        value: function get_item_width() {
-            var view_width = this.listview_ref.current.clientWidth;
-            var item_margin = 16;
-            var min_width = 248 + item_margin;
-            var dif = view_width % min_width / parseInt(view_width / min_width);
-            var result = dif + min_width - item_margin;
-            return result;
-        }
-    }, {
-        key: "set_item_width",
-        value: function set_item_width() {
-            this.setState({
-                listitem_width: this.get_item_width()
-            });
-        }
-    }, {
         key: "componentDidMount",
         value: function componentDidMount() {
             this.set_item_width();
@@ -37049,7 +37190,7 @@ var List_view = (0, _mobxReact.observer)(_class = function (_React$Component) {
 
             return _react2.default.createElement(
                 View,
-                null,
+                { onScroll: this.scrollHandler, innerRef: this.scroller_ref },
                 _react2.default.createElement(
                     "div",
                     {
@@ -37101,8 +37242,7 @@ var List_view = (0, _mobxReact.observer)(_class = function (_React$Component) {
     }]);
 
     return List_view;
-}(_react2.default.Component)) || _class;
-
+}(_react2.default.Component)) || _class) || _class);
 exports.default = List_view;
 },{"react":"../../node_modules/react/index.js","mobx-react":"../../node_modules/mobx-react/index.module.js","./Add_new":"components/list_view/Add_new.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","../style_var.json":"components/style_var.json","./List_item":"components/list_view/List_item.js"}],"components/cta/Cta.js":[function(require,module,exports) {
 "use strict";
@@ -37111,7 +37251,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(["\n    user-select: none;\n    position: fixed;\n    z-index: 2;\n    text-align: center;\n    width: ", "px;\n    bottom: ", "px;\n    padding: ", "px 0;\n    left: 50vw;\n    transform: translateX(-50%);\n    background: ", ";\n    font-size: inherit;\n    font-family: inherit;\n    border-radius: 100px;\n    color: ", ";\n    font-weight: ", ";\n    border: 1px solid ", ";\n    transition-property: color, background, border;\n    transition: ", ";\n    &:hover {\n        background: ", ";\n        color: ", ";\n    }\n    animation: showup ", ";\n    @keyframes showup {\n        from {\n            bottom: ", "px;\n        }\n        to {\n            bottom: ", "px;\n        }\n    }\n"], ["\n    user-select: none;\n    position: fixed;\n    z-index: 2;\n    text-align: center;\n    width: ", "px;\n    bottom: ", "px;\n    padding: ", "px 0;\n    left: 50vw;\n    transform: translateX(-50%);\n    background: ", ";\n    font-size: inherit;\n    font-family: inherit;\n    border-radius: 100px;\n    color: ", ";\n    font-weight: ", ";\n    border: 1px solid ", ";\n    transition-property: color, background, border;\n    transition: ", ";\n    &:hover {\n        background: ", ";\n        color: ", ";\n    }\n    animation: showup ", ";\n    @keyframes showup {\n        from {\n            bottom: ", "px;\n        }\n        to {\n            bottom: ", "px;\n        }\n    }\n"]);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _templateObject = _taggedTemplateLiteral(["\n    user-select: none;\n    position: absolute;\n    z-index: 2;\n    text-align: center;\n    box-sizing: border-box;\n    padding: 0 ", "px;\n    height: ", "px;\n    min-width: ", "px;\n    max-width: 100vw;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    left: 50vw;\n    bottom: ", "px;\n    transform: translateX(-50%);\n    background: ", ";\n    color: ", ";\n    box-shadow: ", ";\n    font-weight: ", ";\n    border: 1px solid ", ";\n    border-radius: 100px;\n    transition: ", ";\n    transition-property: color, background, border;\n    animation: ", ";\n    @keyframes showup {\n        from {\n            bottom: ", "px;\n        }\n        to {\n            bottom: ", "px;\n        }\n    }\n    animation: ", ";\n    @keyframes bounce {\n        0% {\n            transform: translate(-50%, 0);\n        }\n        40%{\n            transform: translate(-50%, -16px);\n        }\n        100% {\n            transform: translate(-50%, 0);\n        }\n    }\n"], ["\n    user-select: none;\n    position: absolute;\n    z-index: 2;\n    text-align: center;\n    box-sizing: border-box;\n    padding: 0 ", "px;\n    height: ", "px;\n    min-width: ", "px;\n    max-width: 100vw;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    left: 50vw;\n    bottom: ", "px;\n    transform: translateX(-50%);\n    background: ", ";\n    color: ", ";\n    box-shadow: ", ";\n    font-weight: ", ";\n    border: 1px solid ", ";\n    border-radius: 100px;\n    transition: ", ";\n    transition-property: color, background, border;\n    animation: ", ";\n    @keyframes showup {\n        from {\n            bottom: ", "px;\n        }\n        to {\n            bottom: ", "px;\n        }\n    }\n    animation: ", ";\n    @keyframes bounce {\n        0% {\n            transform: translate(-50%, 0);\n        }\n        40%{\n            transform: translate(-50%, -16px);\n        }\n        100% {\n            transform: translate(-50%, 0);\n        }\n    }\n"]);
 
 var _react = require("react");
 
@@ -37125,45 +37267,109 @@ var _styledComponents2 = _interopRequireDefault(_styledComponents);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 var style_var = require("../style_var.json");
 var unit = style_var.spacing.unit;
 
-var Button = _styledComponents2.default.div(_templateObject, unit * 26, unit * 2, unit, style_var.colorBase.yellow, style_var.colorBase.black, style_var.font.weight.medium, style_var.colorBase.black, style_var.transition.fast, style_var.colorBase.black, style_var.colorBase.yellow, style_var.transition.spring, unit * -4, unit * 2);
+var Button = _styledComponents2.default.div(_templateObject, unit * 3, unit * 5, unit * 25, unit * 2, function (props) {
+    return props.isHover ? style_var.colorBase.black : style_var.colorBase.yellow;
+}, function (props) {
+    return props.isHover ? style_var.colorBase.yellow : style_var.colorBase.black;
+}, function (props) {
+    return props.isHover && style_var.shadow;
+}, style_var.font.weight.medium, style_var.colorBase.black, style_var.transition.fast, function (props) {
+    return !props.showed && "showup " + style_var.transition.spring;
+}, unit * -4, unit * 2, function (props) {
+    return props.clicked && "bounce " + style_var.transition.slow;
+});
 
-// todo: key shortcut
-var Cta = function Cta(props) {
-    return _react2.default.createElement(
-        _react2.default.Fragment,
-        null,
-        props.count == 0 ? null : _react2.default.createElement(
-            Button,
-            { onClick: props.clickHandler },
-            _react2.default.createElement(_reactIntl.FormattedMessage, { id: "cta", values: { count: props.count } })
-        )
-    );
-};
+var Cta = function (_Component) {
+    _inherits(Cta, _Component);
 
-// class Cta extends Component {
-//     clickHandler = () => {
-//         this.p;
-//     };
-//     render() {
-//         return (
-//             <React.Fragment>
-//                 {this.props.count == 0 ? null : (
-//                     <Button onClick={this.clickHandler}>
-//                         <FormattedMessage
-//                             id="cta"
-//                             values={{ count: this.props.count }}
-//                         />
-//                     </Button>
-//                 )}
-//             </React.Fragment>
-//         );
-//     }
-// }
+    function Cta() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, Cta);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cta.__proto__ || Object.getPrototypeOf(Cta)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            clicked: false,
+            isHover: false,
+            showed: false
+        }, _this.pressEnter = function (e) {
+            if (_this.props.count < 1) return;
+            if ((e.metaKey || e.ctrlKey) && e.keyCode == 13) {
+                _this.props.boom();
+            }
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Cta, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            window.addEventListener("keypress", this.pressEnter);
+        }
+    }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+            window.removeEventListener("keypress", this.pressEnter);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                _react2.default.Fragment,
+                null,
+                this.props.count == 0 ? null : _react2.default.createElement(
+                    Button,
+                    {
+                        isHover: this.state.isHover,
+                        clicked: this.state.clicked,
+                        showed: this.state.showed,
+                        onAnimationEnd: function onAnimationEnd(e) {
+                            if (e.animationName == "showup") {
+                                _this2.setState({ showed: true });
+                            }
+                            if (e.animationName == "bounce") {
+                                _this2.setState({ clicked: false });
+                            }
+                        },
+                        onClick: function onClick() {
+                            _this2.setState({ clicked: true });
+                            _this2.props.boom();
+                        },
+                        onMouseOver: function onMouseOver() {
+                            _this2.setState({ isHover: true });
+                        },
+                        onMouseLeave: function onMouseLeave() {
+                            _this2.setState({ isHover: false });
+                        }
+                    },
+                    _react2.default.createElement(_reactIntl.FormattedMessage, {
+                        id: "cta",
+                        values: { count: this.props.count }
+                    })
+                )
+            );
+        }
+    }]);
+
+    return Cta;
+}(_react.Component);
 
 exports.default = Cta;
 },{"react":"../../node_modules/react/index.js","react-intl":"../../node_modules/react-intl/lib/index.es.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","../style_var.json":"components/style_var.json"}],"components/alert/Alert.js":[function(require,module,exports) {
@@ -37177,7 +37383,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _dec, _class;
 
-var _templateObject = _taggedTemplateLiteral(["\n    user-select: none;\n    z-index: 5;\n    position: fixed;\n    width: 100vw;\n    height: 100vh;\n    left: 0;\n    top: 0;\n    background: ", ";\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    .view {\n        @keyframes drop {\n            from {\n                transform: translateY(-16px);\n            }\n            to {\n                transform: translateY(0);\n            }\n        }\n        animation: drop ", ";\n        min-width: ", "px;\n        margin: 0 ", "px;\n        padding: ", "px ", "px;\n        padding-bottom: ", "px;\n        background: ", ";\n        border: 1px solid ", ";\n        box-shadow: ", ";\n        border-radius: ", "px;\n        text-align: center;\n        .content {\n            font-weight: ", ";\n        }\n        .actions {\n            margin-top: ", "px;\n            display: flex;\n            flex-direction: row;\n            justify-content: space-around;\n        }\n    }\n    .action {\n        flex-grow: 1;\n        flex-shrink: 1;\n        padding: ", "px;\n        font-weight: ", ";\n        &:hover {\n            font-weight: ", ";\n        }\n        &.delete {\n            color: ", ";\n        }\n    }\n"], ["\n    user-select: none;\n    z-index: 5;\n    position: fixed;\n    width: 100vw;\n    height: 100vh;\n    left: 0;\n    top: 0;\n    background: ", ";\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    .view {\n        @keyframes drop {\n            from {\n                transform: translateY(-16px);\n            }\n            to {\n                transform: translateY(0);\n            }\n        }\n        animation: drop ", ";\n        min-width: ", "px;\n        margin: 0 ", "px;\n        padding: ", "px ", "px;\n        padding-bottom: ", "px;\n        background: ", ";\n        border: 1px solid ", ";\n        box-shadow: ", ";\n        border-radius: ", "px;\n        text-align: center;\n        .content {\n            font-weight: ", ";\n        }\n        .actions {\n            margin-top: ", "px;\n            display: flex;\n            flex-direction: row;\n            justify-content: space-around;\n        }\n    }\n    .action {\n        flex-grow: 1;\n        flex-shrink: 1;\n        padding: ", "px;\n        font-weight: ", ";\n        &:hover {\n            font-weight: ", ";\n        }\n        &.delete {\n            color: ", ";\n        }\n    }\n"]);
+var _templateObject = _taggedTemplateLiteral(["\n    user-select: none;\n    z-index: 5;\n    position: fixed;\n    width: 100vw;\n    height: 100vh;\n    left: 0;\n    top: 0;\n    background: ", ";\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    .view {\n        @keyframes drop {\n            from {\n                transform: translateY(-16px);\n            }\n            to {\n                transform: translateY(0);\n            }\n        }\n        animation: drop ", ";\n        min-width: ", "px;\n        margin: 0 ", "px;\n        padding: ", "px ", "px;\n        padding-bottom: ", "px;\n        background: ", ";\n        border: 1px solid ", ";\n        box-shadow: ", ";\n        border-radius: ", "px;\n        text-align: center;\n        .content {\n            font-weight: ", ";\n            .group-name {\n                margin-top: ", "px;\n                font-weight: ", ";\n            }\n        }\n        .actions {\n            margin-top: ", "px;\n            display: flex;\n            flex-direction: row;\n            justify-content: space-around;\n        }\n    }\n    .action {\n        flex-grow: 1;\n        flex-shrink: 1;\n        padding: ", "px;\n        font-weight: ", ";\n        &:hover {\n            font-weight: ", ";\n        }\n        &.delete {\n            color: ", ";\n        }\n    }\n"], ["\n    user-select: none;\n    z-index: 5;\n    position: fixed;\n    width: 100vw;\n    height: 100vh;\n    left: 0;\n    top: 0;\n    background: ", ";\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    .view {\n        @keyframes drop {\n            from {\n                transform: translateY(-16px);\n            }\n            to {\n                transform: translateY(0);\n            }\n        }\n        animation: drop ", ";\n        min-width: ", "px;\n        margin: 0 ", "px;\n        padding: ", "px ", "px;\n        padding-bottom: ", "px;\n        background: ", ";\n        border: 1px solid ", ";\n        box-shadow: ", ";\n        border-radius: ", "px;\n        text-align: center;\n        .content {\n            font-weight: ", ";\n            .group-name {\n                margin-top: ", "px;\n                font-weight: ", ";\n            }\n        }\n        .actions {\n            margin-top: ", "px;\n            display: flex;\n            flex-direction: row;\n            justify-content: space-around;\n        }\n    }\n    .action {\n        flex-grow: 1;\n        flex-shrink: 1;\n        padding: ", "px;\n        font-weight: ", ";\n        &:hover {\n            font-weight: ", ";\n        }\n        &.delete {\n            color: ", ";\n        }\n    }\n"]);
 
 var _react = require("react");
 
@@ -37205,7 +37411,7 @@ var style_var = require("../style_var.json");
 var unit = style_var.spacing.unit;
 
 
-var Container = _styledComponents2.default.div(_templateObject, style_var.colorBase.whiteO, style_var.transition.spring, unit * 30, unit * 3, unit * 4, unit * 3, unit * 2, style_var.colorBase.white, style_var.colorBase.greyL2, style_var.shadow, unit * 1, style_var.font.weight.regular, unit * 3, unit, style_var.font.weight.regular, style_var.font.weight.medium, style_var.colorBase.red);
+var Container = _styledComponents2.default.div(_templateObject, style_var.colorBase.whiteO, style_var.transition.spring, unit * 30, unit * 3, unit * 4, unit * 3, unit * 2, style_var.colorBase.white, style_var.colorBase.greyL2, style_var.shadow, unit * 1, style_var.font.weight.regular, unit, style_var.font.weight.medium, unit * 3, unit, style_var.font.weight.regular, style_var.font.weight.medium, style_var.colorBase.red);
 
 var Alert = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     _inherits(Alert, _Component);
@@ -37221,7 +37427,12 @@ var Alert = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, _mo
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Alert.__proto__ || Object.getPrototypeOf(Alert)).call.apply(_ref, [this].concat(args))), _this), _this.dismissHandler = function (e) {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Alert.__proto__ || Object.getPrototypeOf(Alert)).call.apply(_ref, [this].concat(args))), _this), _this.escHandler = function (e) {
+            if (!_this.props.viewStore.show_alert) return;
+            if (e.keyCode === 27) {
+                _this.props.viewStore.show_alert = false;
+            }
+        }, _this.dismissHandler = function (e) {
             if (!e.target.getAttribute("role")) return;
             _this.props.viewStore.show_alert = false;
         }, _this.deleteHandler = function () {
@@ -37230,6 +37441,16 @@ var Alert = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, _mo
     }
 
     _createClass(Alert, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            document.addEventListener("keydown", this.escHandler);
+        }
+    }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+            document.removeEventListener("keydown", this.escHandler);
+        }
+    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
@@ -37241,11 +37462,10 @@ var Alert = (_dec = (0, _mobxReact.inject)(["viewStore"]), _dec(_class = (0, _mo
                     _react2.default.createElement(
                         "div",
                         { className: "content" },
-                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: "alert.context" }),
-                        _react2.default.createElement("br", null),
+                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: "alert.context", tagName: "div" }),
                         _react2.default.createElement(
-                            "span",
-                            null,
+                            "div",
+                            { className: "group-name" },
                             this.props.viewStore.current_group_name
                         )
                     ),
@@ -37528,24 +37748,21 @@ var Container = (0, _mobxReact.observer)(_class = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).call(this));
 
-        _this.dismissAlert = function () {
-            _this.setState({ showAlert: false });
-        };
-
-        _this.showAlert = function () {
-            // TODO: show delete alert
-            _this.setState({ showAlert: true });
-        };
-
         _this.state = {
-            showAlert: false,
             canDrop: false,
-            count: 30
+            count: 1
         };
         return _this;
     }
 
     _createClass(Container, [{
+        key: "componentWillMount",
+        value: function componentWillMount() {
+            window.set_user_lang = function (lang) {
+                if (lang) view_store.user_lang = lang;
+            };
+        }
+    }, {
         key: "get_data",
         value: function get_data() {
             //todo: get data from backend at the first time
@@ -37561,18 +37778,21 @@ var Container = (0, _mobxReact.observer)(_class = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 _reactIntl.IntlProvider,
-                { locale: langs.zh.locale, messages: langs.zh.messages },
+                {
+                    locale: langs[view_store.user_lang].locale,
+                    messages: langs[view_store.user_lang].messages
+                },
                 _react2.default.createElement(
                     _mobxReact.Provider,
                     { viewStore: view_store },
                     _react2.default.createElement(
                         Root,
                         null,
-                        _react2.default.createElement(_Header2.default, null),
+                        _react2.default.createElement(_Header2.default, { scrolled: view_store.list_scrolled }),
                         _react2.default.createElement(_List_view2.default, null),
                         _react2.default.createElement(_Cta2.default, {
                             count: this.state.count,
-                            clickHandler: this.open_all
+                            boom: this.open_all
                         }),
                         view_store.show_alert && _react2.default.createElement(_Alert2.default, null),
                         view_store.can_drop && _react2.default.createElement(_Drop_cover2.default, null)
@@ -37634,7 +37854,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50904' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57339' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

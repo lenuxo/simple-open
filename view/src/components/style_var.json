@@ -9,6 +9,7 @@
         "red": "#D0021B"
     },
     "shadow": "0 1px 2px 0 rgba(0,0,0,0.1)",
+    "textshadow": "0 1px 1px rgba(0,0,0,0.25)",
     "font": {
         "family": "'PingFang SC', 'SF Pro Display', 'SF UI Display', Helvetica, Arial",
         "size": {
@@ -31,5 +32,8 @@
         "normal": "0.2s ease-in-out",
         "slow": "0.5s ease-in-out",
         "spring": "0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+    },
+    "animation": {
+        "shake": "@keyframes shake {0% {transform: translateX(0);}25% {transform: translateX(-8px);}50% {transform: translateX(0);}75% {transform: translateX(8px);}100% {transform: translateX(0);}}"
     }
 }

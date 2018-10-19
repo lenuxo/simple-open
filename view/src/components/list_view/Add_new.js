@@ -46,13 +46,10 @@ const Container = styled.div`
 `;
 
 class Add_new extends Component {
-    constructor(props) {
-        super(props);
-        this.clickHandler = this.clickHandler.bind(this);
-    }
-    clickHandler(e) {
+    clickHandler = e => {
         // TODO: 用户加入新地址
-    }
+        this.props.browse();
+    };
     render() {
         return (
             <Container className={`${this.props.isEmpty && "empty"}`}>

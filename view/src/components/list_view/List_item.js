@@ -2,15 +2,35 @@ import React, { Component } from "react";
 import styled from "styled-components";
 let style_var = require("../style_var.json");
 let unit = style_var.spacing.unit;
+import { ipcRenderer } from "electron";
 
 const Loading = styled.div`
-    background: ${style_var.colorBase.greyL1};
-    border-radius: ${unit * 0.5}px;
+    background: none;
     box-sizing: border-box;
     width: ${props => props.width}px;
     height: ${unit * 8}px;
     margin: ${unit * 1.5}px ${unit * 1}px;
-    animation: loading ${style_var.transition.slow} alternate infinite;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    .icon {
+        flex-basis: ${unit * 6}px;
+        flex-shrink: 0;
+        height: ${unit * 6}px;
+        border-radius: ${unit / 2}px;
+        background-color: ${style_var.colorBase.greyL1};
+        animation: loading ${style_var.transition.slow} alternate infinite;
+    }
+    .text {
+        border-radius: ${unit / 2}px;
+        height: ${unit * 6}px;
+        flex-grow: 1;
+        flex-shrink: 1;
+        margin-left: ${unit}px;
+        background-color: ${style_var.colorBase.greyL1};
+        animation: loading ${style_var.transition.slow} alternate infinite;
+    }
     @keyframes loading {
         from {
             background: ${style_var.colorBase.greyL1};
@@ -27,6 +47,7 @@ const Item = styled.div`
     width: ${props => props.width}px;
     height: ${unit * 8}px;
     padding: ${unit}px;
+    padding-right: 0;
     margin: ${unit * 1.5}px ${unit * 1}px;
     display: flex;
     flex-direction: row;
@@ -94,7 +115,11 @@ const Item = styled.div`
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        .click-area {
+            height: 24px;
+        }
         svg {
+            padding-right: ${unit}px;
             float: right;
             display: none;
         }
@@ -109,22 +134,21 @@ class List_item extends Component {
             invalid: false
         };
         this.reverse_string = this.reverse_string.bind(this);
-        this.clickMenuHandler = this.clickMenuHandler.bind(this);
-        this.doubleClickHandler = this.doubleClickHandler.bind(this);
-        this.clickHandler = this.clickHandler.bind(this);
     }
-    clickMenuHandler(e) {
-        e.stopPropagation();
+    clickMenuHandler = e => {
+        e.preventDefault();
+        let mouse = { x: e.pageX, y: e.pageY };
         // TODO: 展开菜单
-    }
-    doubleClickHandler(e) {
+        ipcRenderer.send("show-list-item-menu", { mouse: mouse });
+    };
+    doubleClickHandler = e => {
         e.stopPropagation();
         // todo: open this thing
-    }
-    clickHandler(e) {
+    };
+    clickHandler = e => {
         e.stopPropagation();
         // todo: select this thing
-    }
+    };
     reverse_string(str) {
         if (!str) return;
         let splitString = str.split("");
@@ -133,7 +157,10 @@ class List_item extends Component {
     }
     render() {
         return this.props.isLoading ? (
-            <Loading width={this.props.width} />
+            <Loading width={this.props.width}>
+                <div className="icon" />
+                <div className="text" />
+            </Loading>
         ) : (
             <Item
                 invalid={this.state.invalid}
@@ -141,6 +168,7 @@ class List_item extends Component {
                 className={this.state.selected && "selected"}
                 onDoubleClick={this.doubleClickHandler}
                 onClick={this.clickHandler}
+                onContextMenu={this.clickMenuHandler}
             >
                 {this.state.invalid ? (
                     <div className="invalid-icon">
@@ -172,7 +200,7 @@ class List_item extends Component {
                 ) : (
                     <div className="icon">{this.props.icon}</div>
                 )}
-                <div className="text">
+                <div className="text" title={this.props.path}>
                     <div className="name">{this.props.name}</div>
                     <div className="path">
                         {this.reverse_string(this.props.path)}

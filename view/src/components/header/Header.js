@@ -12,6 +12,7 @@ let Window_dragger = styled.div`
     flex-shrink: 0;
 `;
 let Container = styled.div`
+    z-index: 3;
     background: ${style_var.colorBase.white};
     flex-grow: 0;
     flex-shrink: 0;
@@ -19,21 +20,14 @@ let Container = styled.div`
     flex-direction: column;
     padding-bottom: ${unit}px;
     border: none;
-    border-bottom: ${props =>
-        props.isScrolled && `1px solid ${style_var.colorBase.greyL1}`};
+    box-shadow: ${props => props.isScrolled && style_var.shadow};
     transition: ${style_var.transition.fast};
 `;
 
 class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isScrolled: false
-        };
-    }
     render() {
         return (
-            <Container isScrolled={this.state.isScrolled}>
+            <Container isScrolled={this.props.scrolled}>
                 <Window_dragger />
                 <Switcher />
             </Container>

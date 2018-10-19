@@ -3,10 +3,8 @@ import { observable } from "mobx";
 import { observer, Provider } from "mobx-react";
 
 //mobx store
-import Data_store from "./data_store/data_store_model";
 import View_store from "./data_store/view_store_model";
 const view_store = new View_store();
-// const data_store = new Data_store();
 
 // i18n
 import { IntlProvider, addLocaleData } from "react-intl";
@@ -34,8 +32,9 @@ let style_var = require("./style_var.json");
 import Header from "./header/Header.js";
 import List_view from "./list_view/List_view";
 import Cta from "./cta/Cta.js";
-import Alert from "./alert/Alert";
+import Delete_alert from "./alert/Delete_alert";
 import Drop_cover from "./cover/Drop_cover";
+import Add_alert from "./alert/Add_alert";
 
 const Root = styled.div`
     width: 100vw;
@@ -54,41 +53,71 @@ const Root = styled.div`
 
 @observer
 class Container extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            showAlert: false,
-            canDrop: false,
-            count: 30
+    componentWillMount() {
+        window.set_user_lang = lang => {
+            if (lang) view_store.user_lang = lang;
+        };
+        this.get_data();
+        document.ondragleave = document.ondragenter = document.ondragover = document.ondrop = e => {
+            e.preventDefault();
         };
     }
-    get_data() {
+    state = {
+        count: 0
+    };
+    get_data = () => {
         //todo: get data from backend at the first time
-    }
-    open_all() {
+    };
+    open_all = () => {
         //todo: open all things
         console.log("boom!");
-    }
-    dismissAlert = () => {
-        this.setState({ showAlert: false });
     };
-    showAlert = () => {
-        // TODO: show delete alert
-        this.setState({ showAlert: true });
+    dropHandler = e => {
+        e.stopPropagation();
+        e.preventDefault();
+        let files = e.dataTransfer.files;
+        let result = [];
+        Array.prototype.forEach.call(files, file => {
+            result.push({
+                path: file.path,
+                name: file.name,
+                type: file.type
+            });
+        });
+        view_store.show_drop_effect = false;
+        console.log(result);
+    };
+    dragEnterHandler = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!view_store.can_drop) return;
+        view_store.show_drop_effect = true;
+        console.log("enter");
+    };
+    dragLeaveHandler = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        view_store.show_drop_effect = false;
     };
     render() {
         return (
-            <IntlProvider locale={langs.zh.locale} messages={langs.zh.messages}>
+            <IntlProvider
+                locale={langs[view_store.user_lang].locale}
+                messages={langs[view_store.user_lang].messages}
+            >
                 <Provider viewStore={view_store}>
-                    <Root>
-                        <Header />
+                    <Root onDragEnter={this.dragEnterHandler}>
+                        <Header scrolled={view_store.list_scrolled} />
                         <List_view />
-                        <Cta
-                            count={this.state.count}
-                            clickHandler={this.open_all}
-                        />
-                        {view_store.show_alert && <Alert />}
-                        {view_store.can_drop && <Drop_cover />}
+                        <Cta count={this.state.count} boom={this.open_all} />
+                        {view_store.show_delete_alert && <Delete_alert />}
+                        {view_store.show_add_alert && <Add_alert />}
+                        {view_store.show_drop_effect && (
+                            <Drop_cover
+                                drop={this.dropHandler}
+                                dragLeave={this.dragLeaveHandler}
+                            />
+                        )}
                     </Root>
                 </Provider>
             </IntlProvider>
