@@ -2,9 +2,11 @@ import React from "react";
 import { observable } from "mobx";
 import { observer, Provider } from "mobx-react";
 
-//mobx store
+//data store
 import View_store from "./data_store/view_store_model";
 const view_store = new View_store();
+import Data_store from "./data_store/data_store_model";
+const data_store = new Data_store();
 
 // i18n
 import { IntlProvider, addLocaleData } from "react-intl";
@@ -31,7 +33,6 @@ let style_var = require("./style_var.json");
 // components
 import Header from "./header/Header.js";
 import List_view from "./list_view/List_view";
-import Cta from "./cta/Cta.js";
 import Delete_alert from "./alert/Delete_alert";
 import Drop_cover from "./cover/Drop_cover";
 import Add_alert from "./alert/Add_alert";
@@ -44,7 +45,6 @@ const Root = styled.div`
     display: flex;
     flex-direction: column;
     align-content: stretch;
-    /* 全局 */
     font-size: ${style_var.font.size.m};
     font-family: ${style_var.font.family};
     color: ${style_var.colorBase.black};
@@ -53,46 +53,36 @@ const Root = styled.div`
 
 @observer
 class Container extends React.Component {
+    @observable
+    user_lang = "en";
     componentWillMount() {
         window.set_user_lang = lang => {
-            if (lang) view_store.user_lang = lang;
+            if (lang) this.user_lang = lang;
         };
-        this.get_data();
         document.ondragleave = document.ondragenter = document.ondragover = document.ondrop = e => {
             e.preventDefault();
         };
+        data_store.read();
     }
-    state = {
-        count: 0
-    };
-    get_data = () => {
-        //todo: get data from backend at the first time
-    };
-    open_all = () => {
-        //todo: open all things
-        console.log("boom!");
-    };
     dropHandler = e => {
         e.stopPropagation();
         e.preventDefault();
         let files = e.dataTransfer.files;
-        let result = [];
         Array.prototype.forEach.call(files, file => {
-            result.push({
+            data_store.addCurrentGroupNewItem({
                 path: file.path,
                 name: file.name,
-                type: file.type
+                type: file.type ? "file" : "path",
+                isUrl: false
             });
         });
         view_store.show_drop_effect = false;
-        console.log(result);
     };
     dragEnterHandler = e => {
         e.preventDefault();
         e.stopPropagation();
         if (!view_store.can_drop) return;
         view_store.show_drop_effect = true;
-        console.log("enter");
     };
     dragLeaveHandler = e => {
         e.preventDefault();
@@ -102,14 +92,13 @@ class Container extends React.Component {
     render() {
         return (
             <IntlProvider
-                locale={langs[view_store.user_lang].locale}
-                messages={langs[view_store.user_lang].messages}
+                locale={langs[this.user_lang].locale}
+                messages={langs[this.user_lang].messages}
             >
-                <Provider viewStore={view_store}>
+                <Provider viewStore={view_store} dataStore={data_store}>
                     <Root onDragEnter={this.dragEnterHandler}>
                         <Header scrolled={view_store.list_scrolled} />
                         <List_view />
-                        <Cta count={this.state.count} boom={this.open_all} />
                         {view_store.show_delete_alert && <Delete_alert />}
                         {view_store.show_add_alert && <Add_alert />}
                         {view_store.show_drop_effect && (

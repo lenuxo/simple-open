@@ -22,30 +22,17 @@ const Actions = styled.div`
     flex-direction: row;
 `;
 
-@inject(["viewStore"])
+@inject("viewStore", "dataStore")
 @observer
 class Alert extends Component {
-    componentDidMount() {
-        document.addEventListener("keydown", this.escHandler);
-    }
-    componentWillUnmount() {
-        document.removeEventListener("keydown", this.escHandler);
-    }
-    escHandler = e => {
-        if (!this.props.viewStore.show_delete_alert) return;
-        if (e.keyCode === 27) {
-            this.props.viewStore.show_delete_alert = false;
-        }
-    };
     dismissHandler = e => {
-        e.stopPropagation();
+        if (e) e.stopPropagation();
         this.props.viewStore.show_delete_alert = false;
     };
     deleteHandler = () => {
         // TODO: delete group
-        console.log("====================================");
-        console.log("delete");
-        console.log("====================================");
+        this.props.dataStore.deleteCurrentGroup();
+        this.dismissHandler();
     };
     render() {
         return (

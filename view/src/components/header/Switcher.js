@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 const style_var = require("../style_var.json");
 const unit = style_var.spacing.unit;
 import Pop_menu from "./Pop_menu";
@@ -106,19 +106,20 @@ const Container = styled.div`
         }
     }
     animation: ${props =>
-        props.overLimit && `shake ${style_var.transition.fast}`};
-
-    ${css(style_var.animation.shake)};
+        props.overLimit && `${shake} ${style_var.transition.fast}`};
+`;
+const shake = keyframes`
+    ${style_var.animation.shake};
 `;
 
-@inject(["viewStore"])
+@inject("viewStore", "dataStore")
 @observer
 class Switcher extends Component {
     @observable
     store = {
         isHover: false,
         isEditing: false,
-        unsavedName: this.props.viewStore.current_group_name,
+        nameForShow: "",
         overLimit: false
     };
     container_ref = React.createRef();
@@ -161,34 +162,36 @@ class Switcher extends Component {
     };
     unsaveBlurHandler = () => {
         if (!this.store.isEditing) return;
+        this.store.isHover = false;
         this.store.isEditing = false;
-        this.store.unsavedName = this.props.viewStore.current_group_name;
+        this.store.nameForShow = this.props.dataStore.getCurrentGroupName;
     };
     saveHandler = e => {
-        // TODO: save unsaved group name
+        e.stopPropagation();
         let save_group_name = () => {
-            console.log("save group name");
-            this.props.viewStore.current_group_name = this.store.unsavedName;
+            if (this.store.nameForShow == "") {
+                this.store.overLimit = true;
+                return;
+            }
+            this.props.dataStore.setCurrentGroupName(this.store.nameForShow);
             this.store.isEditing = false;
         };
 
-        e.stopPropagation();
         if (e.type === "keypress" && e.key === "Enter")
             return save_group_name();
         if (e.type === "click") return save_group_name();
     };
     editHandler = e => {
         e.stopPropagation();
-        this.store.unsavedName = this.props.viewStore.current_group_name;
+        this.store.nameForShow = this.props.dataStore.getCurrentGroupName;
         this.store.isEditing = true;
     };
     deleteHandler = e => {
         e.stopPropagation();
-        // TODO: delete this group
         this.props.viewStore.show_delete_alert = true;
     };
     typingHandler = e => {
-        this.store.unsavedName = this.limitNameLength(e.target.value);
+        this.store.nameForShow = this.limitNameLength(e.target.value);
     };
     limitNameLength = value => {
         if (typeof value !== "string") return;
@@ -211,7 +214,7 @@ class Switcher extends Component {
     };
 
     render() {
-        if (this.props.viewStore.header_loading) {
+        if (!this.props.dataStore.dataLoaded) {
             return <Loading />;
         } else {
             return (
@@ -226,7 +229,7 @@ class Switcher extends Component {
                         onMouseLeave={this.hoverHandler}
                         onClick={this.togglePopHandler}
                         onAnimationEnd={e => {
-                            if (e.animationName === "shake")
+                            if (e.animationName === shake)
                                 this.store.overLimit = false;
                         }}
                     >
@@ -261,17 +264,13 @@ class Switcher extends Component {
                                 <input
                                     autoFocus
                                     onChange={this.typingHandler}
-                                    onBlur={() => {
-                                        // this.store.isEditing = false;
-                                        // todo 换成container blur
-                                    }}
                                     onKeyPress={this.saveHandler}
-                                    value={this.store.unsavedName}
+                                    value={this.store.nameForShow}
                                     placeholder="Name this group"
                                 />
                             ) : (
                                 <div>
-                                    {this.props.viewStore.current_group_name}
+                                    {this.props.dataStore.getCurrentGroupName}
                                 </div>
                             )}
                         </div>

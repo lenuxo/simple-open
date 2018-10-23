@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import reverse from "lodash/reverse";
 const style_var = require("../style_var.json");
 const unit = style_var.spacing.unit;
 import Mask from "../cover/Mask";
 import { FormattedMessage } from "react-intl";
+import { observer, inject } from "mobx-react";
 
 const Menu = styled.div`
     user-select: none;
@@ -88,33 +90,46 @@ const Add_group = styled.div`
     }
 `;
 
-let test_arr = [];
-for (let i = 0; i < 8; i++) {
-    test_arr.push({
-        name: "group nas sdfk dfsd me sjdfkjsd kj fklsj sdlfsd dklfjklsdj"
-    });
-}
+@inject("dataStore")
+@observer
 class Pop_menu extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-        this.dismissMenu = this.dismissMenu.bind(this);
-    }
-    dismissMenu() {
-        //dismiss menu
+    dismissMenu = () => {
         this.props.dismissHandler();
-    }
+    };
+    addNewGroup = () => {
+        let id = this.props.dataStore.addGroup();
+        this.changeGroup(id);
+    };
+    changeGroup = id => {
+        this.props.dataStore.setCurrentGroupById(id);
+        this.props.dataStore.save();
+        this.dismissMenu();
+    };
     render() {
         return (
             <React.Fragment>
                 <Mask clickHandler={this.dismissMenu} />
                 <Menu top={"74"}>
                     <Group_list>
-                        {test_arr.map((group, index) => (
-                            <Group key={index}>{group.name}</Group>
-                        ))}
+                        {reverse(
+                            this.props.dataStore.userData.groups.map(group => (
+                                <Group
+                                    key={group.id}
+                                    onClick={() => {
+                                        this.changeGroup(group.id);
+                                    }}
+                                    className={
+                                        group.id ==
+                                            this.props.dataStore.userData
+                                                .currentGroupId && "selected"
+                                    }
+                                >
+                                    {group.name}
+                                </Group>
+                            ))
+                        )}
                     </Group_list>
-                    <Add_group>
+                    <Add_group onClick={this.addNewGroup}>
                         <div className="icon">
                             <svg
                                 viewBox="0 0 28 28"

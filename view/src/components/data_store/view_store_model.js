@@ -2,8 +2,6 @@ import { observable, computed } from "mobx";
 
 class View_store {
     @observable
-    user_lang = "en";
-    @observable
     show_delete_alert = false;
     @observable
     show_add_alert = false;
@@ -17,10 +15,6 @@ class View_store {
     item_loading = false;
     @observable
     list_scrolled = false;
-
-    // 限制长度：10个全角字符或20个半角字符
-    @observable
-    current_group_name = "组名";
 
     @computed
     get can_drop() {

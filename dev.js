@@ -19,7 +19,7 @@ const OPT_DEV = {
     hmrPort: 0
 };
 const OPT_PROD = {
-    outDir: "./view/dist/",
+    outDir: "./view/build/",
     publicUrl: "./",
     watch: false,
     cache: false,

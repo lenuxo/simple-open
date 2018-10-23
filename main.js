@@ -2,17 +2,17 @@ const isDev = process.env.NODE_ENV == "development";
 const { app, BrowserWindow, Menu, MenuItem, ipcMain } = require("electron");
 const path = require("path");
 const user_lang = new (require("./backend/user_language"))();
-// const app_data_store = new (require("./backend/app_data_store"))(
-//     app.getPath("userData") + "/data.json"
-// );
+const local_operate = require("./backend/local_operate");
+const LAUNCH_DATA_PATH = app.getPath("userData") + "/launch_data.json";
 
 let mainWindow;
 function createWindow() {
     // todo 更正文件位置
     let VIEW_PATH = isDev
         ? "file://" + __dirname + "/dev/index.html"
-        : `file://${path.join(__dirname, "/view/build/index.html")}`;
+        : "file://" + __dirname + "/view/build/index.html";
     mainWindow = new BrowserWindow({
+        title: "Simple Open",
         titleBarStyle: "hiddenInset",
         backgroundColor: "#ffffff",
         width: 600,
@@ -20,10 +20,11 @@ function createWindow() {
         height: 500,
         minHeight: 450,
         show: false,
-        icon: path.join(__dirname, "/assets/icons/icon.png")
-        // TODO: app icon
+        icon: __dirname + "/assets/icons/icon.icns"
     });
     mainWindow.loadURL(VIEW_PATH);
+
+    // main menu
     let menuTemplate = [
         {
             label: "File",
@@ -35,17 +36,30 @@ function createWindow() {
                     }
                 },
                 {
+                    label:
+                        user_lang.get("version") +
+                        " " +
+                        require("./package.json").version,
+                    enabled: false
+                },
+                {
+                    label: user_lang.get("update"),
+                    click: function() {
+                        // TODO: 检查更新
+                    }
+                },
+                {
+                    type: "separator"
+                },
+                {
                     label: user_lang.get("close"),
                     role: "close",
-                    visible: false,
-                    accelerator:
-                        process.platform == "darwin" ? "command+W" : "Ctrl+W"
+                    accelerator: "CmdOrCtrl+W"
                 },
                 {
                     label: user_lang.get("quit"),
                     role: "quit",
-                    accelerator:
-                        process.platform == "darwin" ? "command+Q" : "Ctrl+Q"
+                    accelerator: "CmdOrCtrl+Q"
                 }
             ]
         },
@@ -53,15 +67,24 @@ function createWindow() {
             label: user_lang.get("edit"),
             submenu: [
                 { label: user_lang.get("undo"), role: "undo" },
+                { label: user_lang.get("redo"), role: "redo" },
+                { type: "separator" },
                 { label: user_lang.get("copy"), role: "copy" },
                 {
                     role: "pasteAndMatchStyle",
                     label: user_lang.get("paste"),
-                    accelerator:
-                        process.platform == "darwin" ? "command+V" : "Ctrl+V"
+                    accelerator: "CmdOrCtrl+V"
                 },
                 { label: user_lang.get("cut"), role: "cut" },
-                { label: user_lang.get("selectAll"), role: "selectAll" }
+                { label: user_lang.get("selectAll"), role: "selectAll" },
+                { type: "separator" },
+                {
+                    label: user_lang.get("openAll"),
+                    click: function() {
+                        if (webContents) webContents.send("open-all");
+                    },
+                    accelerator: "CmdOrCtrl+Down"
+                }
             ]
         }
     ];
@@ -72,36 +95,75 @@ function createWindow() {
         });
     const mainMenu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(mainMenu);
+
+    // show main window
     let webContents = mainWindow.webContents;
     mainWindow.once("ready-to-show", () => {
         webContents.executeJavaScript(
             `window.set_user_lang('${user_lang.language}')`
         );
         mainWindow.show();
-        return isDev && webContents.openDevTools();
+        isDev && webContents.openDevTools();
     });
     mainWindow.on("closed", () => {
         app.quit();
     });
 
-    const contextMenu = new Menu();
-    contextMenu.append(
-        new MenuItem({
-            label: user_lang.get("open"),
-            click: function() {
-                // TODO: open
-            }
-        })
-    );
-    contextMenu.append(
-        new MenuItem({
-            label: user_lang.get("delete"),
-            click: function() {
-                // todo: delete
-            }
-        })
-    );
+    // open item function
+    let openItems = function(items) {
+        if (Array.isArray(items)) {
+            items.forEach(item => {
+                if (!item.valid) return;
+                item.type == "url"
+                    ? local_operate.openURL(item.path)
+                    : local_operate.openFile(item.path);
+            });
+        } else {
+            items.type == "url"
+                ? local_operate.openURL(items.path)
+                : local_operate.openFile(items.path);
+        }
+    };
+
+    // ipc
+    ipcMain.on("local-data-get", (event, data) => {
+        local_operate
+            .read(LAUNCH_DATA_PATH)
+            .then(data => {
+                event.sender.send("local-data-reply", data);
+            })
+            .catch(err => {
+                event.sender.send("local-data-reply", {});
+            });
+    });
+    ipcMain.on("local-data-post", (event, data) => {
+        local_operate.write(LAUNCH_DATA_PATH, data);
+    });
+    ipcMain.on("item-open", (event, items) => {
+        openItems(items);
+    });
+
+    // right click menu
+    let contextMenu;
     ipcMain.on("show-list-item-menu", (e, data) => {
+        contextMenu = new Menu();
+        contextMenu.append(
+            new MenuItem({
+                label: user_lang.get("open"),
+                enabled: !data.invalid,
+                click: function() {
+                    openItems(data);
+                }
+            })
+        );
+        contextMenu.append(
+            new MenuItem({
+                label: user_lang.get("delete"),
+                click: function() {
+                    e.sender.send("item-delete", { id: data.id });
+                }
+            })
+        );
         contextMenu.popup(mainWindow, data.mouse.x, data.mouse.y);
     });
 }
@@ -116,8 +178,9 @@ function createAboutWindow() {
     if (aboutWindow) return;
     let VIEW_PATH = isDev
         ? "file://" + __dirname + "/dev/about.html"
-        : `file://${path.join(__dirname, "/view/build/index.html")}`;
+        : "file://" + __dirname + "/view/build/about.html";
     aboutWindow = new BrowserWindow({
+        title: user_lang.get("about") + " Simple Open",
         width: 350,
         height: 350,
         show: false,
@@ -134,6 +197,7 @@ function createAboutWindow() {
             `window.set_user_lang('${user_lang.language}')`
         );
         aboutWindow.show();
+        aboutWindow.focus();
     });
     aboutWindow.on("closed", () => {
         aboutWindow = null;

@@ -36,28 +36,12 @@ const About = styled.div`
     }
     .version {
         position: absolute;
-        border-radius: 999px;
         top: 101px;
         right: 158px;
         padding: 8px 16px;
         display: flex;
         flex-direction: row;
         align-items: center;
-        transition: ${style_var.transition.fast};
-        .update {
-            visibility: hidden;
-            opacity: 0;
-            font-size: ${style_var.font.size.s};
-            padding-right: 8px;
-            transition: opacity ${style_var.transition.fast};
-        }
-    }
-    .version[role="hover"] {
-        background: ${style_var.colorBase.greyL1};
-        .update {
-            visibility: visible;
-            opacity: 1;
-        }
     }
     .footer {
         position: absolute;
@@ -79,14 +63,10 @@ const About = styled.div`
 `;
 const languages = {
     zh: {
-        update: "检查更新",
-        loading: "检查中...",
         feedback: "反馈",
         website: "主页"
     },
     en: {
-        update: "check for update",
-        loading: "checking...",
         feedback: "Feedback",
         website: "Website"
     }
@@ -95,8 +75,6 @@ class Root extends Component {
     constructor() {
         super();
         this.state = {
-            isHover: false,
-            isLoading: false,
             user_lang: "en"
         };
     }
@@ -105,18 +83,6 @@ class Root extends Component {
             if (lang) this.setState({ user_lang: lang });
         };
     }
-    hoverHandler = e => {
-        if (e.type == "mouseover") {
-            this.setState({ isHover: true });
-        } else {
-            this.setState({ isHover: false });
-        }
-    };
-    updateHandler = e => {
-        if (this.state.isLoading) return;
-        this.setState({ isLoading: true });
-        // TODO: 后端检查新版本
-    };
     linkHandler = e => {
         e.preventDefault();
         let href = e.target.getAttribute("href");
@@ -187,18 +153,7 @@ class Root extends Component {
                     </svg>
                 </div>
                 <div className="name">Simple Open</div>
-                <div
-                    role={this.state.isHover && "hover"}
-                    className="version"
-                    onMouseOver={this.hoverHandler}
-                    onMouseLeave={this.hoverHandler}
-                    onClick={this.updateHandler}
-                >
-                    <span className="update">
-                        {this.state.isLoading
-                            ? languages[this.state.user_lang].loading
-                            : languages[this.state.user_lang].update}
-                    </span>
+                <div className="version">
                     <span className="v">
                         {require("../../package.json").version}
                     </span>
@@ -208,7 +163,7 @@ class Root extends Component {
                         role="feedback"
                         className="link"
                         // TODO: 加入反馈链接
-                        href="http://github.com"
+                        href="https://github.com/lenuxo/simple-open/issues"
                         onClick={this.linkHandler}
                     >
                         {languages[this.state.user_lang].feedback}

@@ -11,3 +11,5 @@ dev
 .vscode
 dist
 .idea
+view/build
+build

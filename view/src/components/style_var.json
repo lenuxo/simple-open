@@ -9,6 +9,7 @@
         "red": "#D0021B"
     },
     "shadow": "0 1px 2px 0 rgba(0,0,0,0.1)",
+    "ctashadow": "0 1px 16px 0px rgba(0,0,0,0.1)",
     "textshadow": "0 1px 1px rgba(0,0,0,0.25)",
     "font": {
         "family": "'PingFang SC', 'SF Pro Display', 'SF UI Display', Helvetica, Arial",
@@ -34,6 +35,7 @@
         "spring": "0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
     },
     "animation": {
-        "shake": "@keyframes shake {0% {transform: translateX(0);}25% {transform: translateX(-8px);}50% {transform: translateX(0);}75% {transform: translateX(8px);}100% {transform: translateX(0);}}"
+        "shake": "{0%{transform:translateX(0);}25%{transform:translateX(-8px);}50%{transform:translateX(0);}75%{transform: translateX(8px);}100%{transform:translateX(0);}}",
+        "fadein": "{from{opacity:0}to{opacity:1}"
     }
 }

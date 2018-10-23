@@ -1,6 +1,6 @@
-import debounce from "lodash/debounce";
+import { ipcRenderer, remote } from "electron";
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 let style_var = require("../style_var.json");
 let unit = style_var.spacing.unit;
 import { FormattedMessage } from "react-intl";
@@ -44,54 +44,79 @@ const Actions = styled.div`
     flex-direction: row;
 `;
 
-@inject(["viewStore"])
+@inject("viewStore", "dataStore")
 @observer
 class Add_alert extends React.Component {
     input_ref = React.createRef();
     state = {
         value: "",
-        valid: false
+        parsedValue: "",
+        valid: false,
+        type: "",
+        isTyping: false
     };
-    dismissHander = e => {
-        e.stopPropagation();
-        console.log("dimiss");
-        this.props.viewStore.show_add_alert = false;
+    dismissHandler = e => {
+        if (e) e.stopPropagation();
+        if (this.state.isTyping) return;
+        return (this.props.viewStore.show_add_alert = false);
     };
     changeHandler = e => {
         this.setState({
-            value: e.target.value,
-            valid: false
+            value: e.target.value
         });
-        let res = test_path(e.target.value);
-        if (res.type === "invalid") {
-            this.setState({ valid: false });
-        } else {
-            this.setState({ valid: true });
-        }
+        this.testValue(e.target.value);
     };
     pressHandler = e => {
-        if (e.key == "Enter" && this.state.value) {
+        if (e.key == "Enter" && this.state.valid) {
             this.addHandler();
         }
     };
-    addHandler = e => {
-        console.log("add");
-    };
     browseHandler = e => {
         e.stopPropagation();
-        console.log("browse");
+        remote.dialog.showOpenDialog(
+            remote.getCurrentWindow(),
+            {
+                properties: ["openFile", "openDirectory", "multiSelections"]
+            },
+            files => {
+                if (files) {
+                    files.forEach(path => {
+                        this.props.dataStore.addCurrentGroupNewItem({
+                            path: path,
+                            type: "file"
+                        });
+                    });
+                    this.props.viewStore.show_add_alert = false;
+                }
+            }
+        );
     };
-    testHandler = debounce(path => {
+    testValue = path => {
         let res = test_path(path);
         if (res.type === "invalid") {
-            this.setState({ valid: false });
+            this.setState({
+                valid: false,
+                type: false,
+                parsedValue: ""
+            });
         } else {
-            this.setState({ valid: true });
+            this.setState({
+                valid: true,
+                type: res.type,
+                parsedValue: res.path
+            });
         }
-    }, 10);
+    };
+    addHandler = e => {
+        this.props.dataStore.addCurrentGroupNewItem({
+            path: this.state.parsedValue,
+            type: this.state.type
+        });
+        this.props.viewStore.show_add_alert = false;
+    };
     render() {
         return (
-            <View dismissHandler={this.dismissHander}>
+            <View dismissHandler={this.dismissHandler}>
                 <Context>
                     <div className="text">
                         <FormattedMessage id="alert.add.t1" />{" "}
@@ -105,6 +130,12 @@ class Add_alert extends React.Component {
                         {txt => (
                             <input
                                 autoFocus
+                                onFocus={() => {
+                                    this.setState({ isTyping: true });
+                                }}
+                                onBlur={() => {
+                                    this.setState({ isTyping: false });
+                                }}
                                 type="text"
                                 value={this.state.value}
                                 onChange={this.changeHandler}
@@ -116,7 +147,7 @@ class Add_alert extends React.Component {
                     </FormattedMessage>
                 </Context>
                 <Actions>
-                    <Action_button onClick={this.dismissHander}>
+                    <Action_button onClick={this.dismissHandler}>
                         <FormattedMessage id="alert.dismiss" />
                     </Action_button>
                     <Action_button

@@ -38,12 +38,27 @@ const Container = styled.div`
         }
     }
 `;
-const Alert_container = props => (
-    <Container onClick={props.dismissHandler}>
-        <div className="view" onClick={e => e.stopPropagation()}>
-            {props.children}
-        </div>
-    </Container>
-);
 
+class Alert_container extends React.Component {
+    escHandler = e => {
+        if (e.type === "keydown" && e.keyCode === 27) {
+            this.props.dismissHandler();
+        }
+    };
+    componentDidMount() {
+        document.addEventListener("keydown", this.escHandler);
+    }
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.escHandler);
+    }
+    render() {
+        return (
+            <Container onClick={this.props.dismissHandler}>
+                <div className="view" onClick={e => e.stopPropagation()}>
+                    {this.props.children}
+                </div>
+            </Container>
+        );
+    }
+}
 export default Alert_container;

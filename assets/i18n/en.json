@@ -3,7 +3,7 @@
     "add_item.dnd": "DRAG & DROP",
     "add_item.f": "your file or folder here,",
     "add_item.or": "or ",
-    "add_item.br": "browse",
+    "add_item.br": "click here",
     "cta": "Open this {count,number}",
     "drop_cover.drop": "DROP",
     "drop_cover.here": "here",

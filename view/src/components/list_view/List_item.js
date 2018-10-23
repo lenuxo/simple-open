@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 let style_var = require("../style_var.json");
 let unit = style_var.spacing.unit;
 import { ipcRenderer } from "electron";
@@ -40,6 +40,7 @@ const Loading = styled.div`
         }
     }
 `;
+const fadein = keyframes`${style_var.animation.fadein}`;
 const Item = styled.div`
     background: ${style_var.colorBase.white};
     border-radius: ${unit * 0.5}px;
@@ -53,6 +54,8 @@ const Item = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
+    animation: ${fadein} ${style_var.transition.fast};
+    transition: background ${style_var.transition.fast};
     &:hover,
     &.selected {
         background: ${style_var.colorBase.greyL1};
@@ -65,7 +68,10 @@ const Item = styled.div`
         flex-shrink: 0;
         height: ${unit * 6}px;
         border-radius: ${unit / 2}px;
-        background-color: ${style_var.colorBase.greyL2};
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
     .invalid-icon {
         opacity: 0.4;
@@ -73,7 +79,7 @@ const Item = styled.div`
         flex-shrink: 0;
         height: ${unit * 6}px;
         border-radius: ${unit / 2}px;
-        background-color: ${style_var.colorBase.greyL2};
+        background-color: ${style_var.colorBase.white};
         svg {
             float: left;
         }
@@ -104,7 +110,7 @@ const Item = styled.div`
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            direction: rtl;
+            direction: ltr;
             text-align: left;
         }
     }
@@ -127,34 +133,36 @@ const Item = styled.div`
 `;
 
 class List_item extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selected: false,
-            invalid: false
-        };
-        this.reverse_string = this.reverse_string.bind(this);
-    }
+    state = {
+        selected: false
+    };
     clickMenuHandler = e => {
         e.preventDefault();
-        let mouse = { x: e.pageX, y: e.pageY };
-        // TODO: 展开菜单
-        ipcRenderer.send("show-list-item-menu", { mouse: mouse });
+        ipcRenderer.send("show-list-item-menu", {
+            mouse: {
+                x: e.pageX,
+                y: e.pageY
+            },
+            id: this.props.itemId,
+            path: this.props.path,
+            type: this.props.type,
+            invalid: this.props.invalid
+        });
     };
     doubleClickHandler = e => {
         e.stopPropagation();
-        // todo: open this thing
+        if (this.props.invalid) return;
+        ipcRenderer.send("item-open", {
+            type: this.props.type,
+            path: this.props.path
+        });
     };
-    clickHandler = e => {
-        e.stopPropagation();
-        // todo: select this thing
-    };
-    reverse_string(str) {
+    reverse_string = str => {
         if (!str) return;
         let splitString = str.split("");
         let reverseArr = splitString.reverse();
         return reverseArr.join("");
-    }
+    };
     render() {
         return this.props.isLoading ? (
             <Loading width={this.props.width}>
@@ -163,14 +171,14 @@ class List_item extends Component {
             </Loading>
         ) : (
             <Item
-                invalid={this.state.invalid}
+                invalid={this.props.invalid}
                 width={this.props.width}
                 className={this.state.selected && "selected"}
                 onDoubleClick={this.doubleClickHandler}
-                onClick={this.clickHandler}
                 onContextMenu={this.clickMenuHandler}
+                title={this.props.invalid ? "this file is invalid" : null}
             >
-                {this.state.invalid ? (
+                {this.props.invalid ? (
                     <div className="invalid-icon">
                         <svg viewBox="0 0 48 48" version="1.1">
                             <g
@@ -198,13 +206,26 @@ class List_item extends Component {
                         </svg>
                     </div>
                 ) : (
-                    <div className="icon">{this.props.icon}</div>
-                )}
-                <div className="text" title={this.props.path}>
-                    <div className="name">{this.props.name}</div>
-                    <div className="path">
-                        {this.reverse_string(this.props.path)}
+                    <div className="icon">
+                        {this.props.isUrl && (
+                            <img
+                                src={require("../../../../assets/icons/url-icon.svg")}
+                            />
+                        )}
+                        {this.props.isDir && (
+                            <img
+                                src={require("../../../../assets/icons/folder-icon.png")}
+                            />
+                        )}
+                        {this.props.isFile && <img src={this.props.iconPath} />}
                     </div>
+                )}
+                <div
+                    className="text"
+                    title={this.props.invalid ? null : this.props.path}
+                >
+                    <div className="name">{this.props.name}</div>
+                    <div className="path">{this.props.path}</div>
                 </div>
                 <div className="menu">
                     <div className="click-area" onClick={this.clickMenuHandler}>

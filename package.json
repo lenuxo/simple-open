@@ -1,17 +1,39 @@
 {
     "name": "simple-open",
     "version": "0.1.0",
-    "description": "",
+    "description": "Simply open a group of your things in one click. ",
     "main": "main.js",
     "scripts": {
         "start": "NODE_ENV=development electron .",
+        "start-prod": "NODE_ENV=production electron .",
         "dev": "NODE_ENV=development node ./dev.js",
-        "prod-view": "NODE_ENV=production node ./dev.js"
+        "dev-prod": "NODE_ENV=production node ./dev.js",
+        "build": "electron-builder build -m"
     },
-    "keywords": [],
+    "keywords": [
+        "launcher"
+    ],
     "author": {
         "name": "Duan",
         "email": "hello@duanjun.net"
+    },
+    "repository": "https://github.com/lenuxo/simple-open",
+    "build": {
+        "appId": "com.electron.simple-open",
+        "productName": "Simple Open",
+        "copyright": "Copyright © 2018 Duan Jun",
+        "directories": {
+            "output": "build"
+        },
+        "mac": {
+            "category": "public.app-category.productivity",
+            "icon": "./assets/icons/icon.icns",
+            "artifactName": "${productName}_setup_${version}.${ext}"
+        },
+        "dmg": {
+            "icon": "./assets/icons/icon.icns",
+            "backgroundColor": "#FFE70B"
+        }
     },
     "license": "ISC",
     "devDependencies": {
@@ -25,19 +47,19 @@
         "electron": "^3.0.2",
         "electron-builder": "^20.28.4",
         "electron-is-dev": "^1.0.1",
-        "mobx": "^5.5.0",
-        "mobx-react": "^5.2.8",
-        "parcel-bundler": "^1.10.3",
+        "parcel-bundler": "^1.10.3"
+    },
+    "dependencies": {
+        "styled-components": "^3.4.9",
         "react": "^16.5.2",
         "react-dom": "^16.5.2",
         "react-intl": "^2.7.1",
-        "styled-components": "^3.4.9"
-    },
-    "dependencies": {
-        "electron-store": "^2.0.0",
+        "mobx": "^5.5.0",
+        "mobx-react": "^5.2.8",
+        "electron-updater": "^3.1.2",
+        "file-icon": "^3.1.0",
         "fs-extra": "^7.0.0",
         "lodash": "^4.17.11",
-        "mousetrap": "^1.6.2",
         "shortid": "^2.2.13"
     }
 }
