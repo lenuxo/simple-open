@@ -1,9 +1,10 @@
 const isDev = process.env.NODE_ENV == "development";
 const { app, BrowserWindow, Menu, MenuItem, ipcMain } = require("electron");
-const path = require("path");
 const user_lang = new (require("./backend/user_language"))();
 const local_operate = require("./backend/local_operate");
 const LAUNCH_DATA_PATH = app.getPath("userData") + "/launch_data.json";
+const { autoUpdater } = require("electron-updater");
+const checkForUpdates = require("./backend/checkForUpdates");
 
 let mainWindow;
 function createWindow() {
@@ -44,9 +45,7 @@ function createWindow() {
                 },
                 {
                     label: user_lang.get("update"),
-                    click: function() {
-                        // TODO: 检查更新
-                    }
+                    click: checkForUpdates
                 },
                 {
                     type: "separator"
@@ -169,6 +168,7 @@ function createWindow() {
 }
 
 function init() {
+    autoUpdater.checkForUpdatesAndNotify();
     user_lang.readAppLocale(app);
     createWindow();
 }

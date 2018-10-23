@@ -8,7 +8,7 @@
         "start-prod": "NODE_ENV=production electron .",
         "dev": "NODE_ENV=development node ./dev.js",
         "dev-prod": "NODE_ENV=production node ./dev.js",
-        "build": "electron-builder build -m"
+        "build": "rm -rf build && electron-builder build -m"
     },
     "keywords": [
         "launcher"
@@ -32,10 +32,17 @@
         },
         "dmg": {
             "icon": "./assets/icons/icon.icns",
-            "backgroundColor": "#FFE70B"
-        }
+            "background": "./assets/background/dmg-background.png",
+            "iconTextSize": 16,
+            "iconSize": 120
+        },
+        "publish": [
+            {
+                "provider": "github"
+            }
+        ]
     },
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
         "babel-core": "^6.26.3",
         "babel-loader": "^7.1.5",
