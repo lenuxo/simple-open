@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600px" height="400px" viewBox="0 0 600 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard Copy 2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Artboard-Copy-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" opacity="0" x="0" y="0" width="600" height="400"></rect>
+        <g id="Group" transform="translate(218.000000, 130.000000)">
+            <g id="add" transform="translate(66.000000, 0.000000)" fill-rule="nonzero">
+                <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="0" width="32" height="32"></rect>
+                <path d="M24.3752336,29.9603269 L7.62198428,29.9603269 C4.54074538,29.9603269 2.04032866,27.4612853 2.04032866,24.3786713 L2.04032866,7.62539 C2.04032866,4.54005784 4.54074538,2.03960916 7.62198428,2.03960916 L24.3752656,2.03960916 C27.4619088,2.03960916 29.9596713,4.54002587 29.9596713,7.62539 L29.9596713,24.3786713 C29.9596394,27.4612533 27.4619088,29.9603269 24.3752336,29.9603269 Z M27.1701706,9.02149944 C27.1701706,6.70780412 25.2914444,4.83182803 22.9791242,4.83182803 L9.01809372,4.83182803 C6.70577347,4.83182803 4.82973344,6.70780413 4.82973344,9.02149944 L4.82973344,22.9798117 C4.82973344,25.2961932 6.70577347,27.1694831 9.01809372,27.1694831 L22.9791241,27.1694831 C25.2914444,27.1694831 27.1701706,25.2961932 27.1701706,22.9798117 L27.1701706,9.02149944 Z M17.3947184,22.9798117 L14.6024995,22.9798117 L14.6024995,17.3981561 L9.01809372,17.3981561 L9.01809372,14.6031551 L14.6024995,14.6031551 L14.6024995,9.02149944 L17.3947184,9.02149944 L17.3947184,14.6031551 L22.9791242,14.6031551 L22.9791242,17.3981561 L17.3947184,17.3981561 L17.3947184,22.9798117 Z" id="Shape" fill="#DDE2E5"></path>
+            </g>
+            <text id="DRAG-&amp;-DROP-files-or" font-family="SFProText-Medium, SF Pro Text" font-size="24" font-weight="400" letter-spacing="-0.1107692" fill="#DDE2E5">
+                <tspan x="0.17563685" y="71">DRAG &amp; DROP</tspan>
+                <tspan x="19.7911476" y="100" font-family="SFProText-Regular, SF Pro Text" font-size="18" font-weight="normal">files or floders,</tspan>
+                <tspan x="38.5724007" y="121" font-family="SFProText-Regular, SF Pro Text" font-size="18" font-weight="normal"> or </tspan>
+                <tspan x="65.7797145" y="121" font-family="SFProText-Regular, SF Pro Text" font-size="18" font-weight="normal" text-decoration="underline">browse</tspan>
+            </text>
+        </g>
+        <g id="header/normal" transform="translate(16.000000, 32.000000)">
+            <g id="switch/normal">
+                <g id="Group-4">
+                    <text id="Group-Name-One" font-family="SFProText-Medium, SF Pro Text" font-size="18" font-weight="400" line-spacing="18" fill="#454545">
+                        <tspan x="32" y="25">My Group</tspan>
+                    </text>
+                    <g id="Group-7" transform="translate(16.000000, 17.000000) rotate(90.000000) translate(-16.000000, -17.000000) translate(8.000000, 9.000000)" fill-rule="nonzero" stroke="#333333">
+                        <rect id="Rectangle-9" x="0.5" y="0.5" width="15" height="15" rx="7.5"></rect>
+                        <polyline id="Path-2" points="7.5 5.5 9.5 8 7.5 10.5"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -162,7 +162,6 @@ class Root extends Component {
                     <div
                         role="feedback"
                         className="link"
-                        // TODO: 加入反馈链接
                         href="https://github.com/lenuxo/simple-open/issues"
                         onClick={this.linkHandler}
                     >
@@ -171,8 +170,7 @@ class Root extends Component {
                     <div
                         role="website"
                         className="link"
-                        // TODO: 加入主页链接
-                        href="http://github.com"
+                        href="https://lenuxo.github.io/simple-open/"
                         onClick={this.linkHandler}
                     >
                         {languages[this.state.user_lang].website}

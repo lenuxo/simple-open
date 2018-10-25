@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600px" height="400px" viewBox="0 0 600 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard Copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Artboard-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" x="0" y="0" width="600" height="400"></rect>
+        <g id="Windows-/-x-/-Window-Controls-/-Toolbar---Default-/-Aqua" transform="translate(10.000000, 10.000000)" stroke-width="0.5">
+            <circle id="Zoom" stroke="#1BAC2C" fill="#2ACB42" cx="46" cy="6" r="5.75"></circle>
+            <circle id="Minimise" stroke="#DFA023" fill="#FFC12F" cx="26" cy="6" r="5.75"></circle>
+            <circle id="Close" stroke="#E24640" fill="#FF6157" cx="6" cy="6" r="5.75"></circle>
+        </g>
+    </g>
+</svg>

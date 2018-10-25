@@ -1,13 +1,13 @@
 {
     "name": "simple-open",
-    "version": "0.1.1",
+    "version": "0.1.3",
     "description": "Simply open a group of your things in one click. ",
     "main": "main.js",
     "scripts": {
         "start": "NODE_ENV=development electron .",
         "start-prod": "NODE_ENV=production electron .",
         "dev": "NODE_ENV=development node ./dev.js",
-        "dev-prod": "NODE_ENV=production node ./dev.js",
+        "dev-prod": "rm -rf view/build && NODE_ENV=production node ./dev.js",
         "build": "rm -rf build && electron-builder build -m"
     },
     "keywords": [
